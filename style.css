@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Nunito', sans-serif;
+}
+
+:root{
+
+  --base:#9BC4F9;
+
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.container .bot-card{
+  border-radius: .4rem;
+  padding: .7rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 30em;
+  max-width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+.bot-card .top{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #9BC4F9;
+  justify-content: space-around;
+  border-bottom: 2px solid grey;
+  padding: 4px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.bot-card .top i{
+  font-size: 1.7rem;
+}
+.bot-card .top img{
+  width: 40px;
+  height: 40px;
+}
+
+.message-body{
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  margin: 4px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.message-body::-webkit-scrollbar{
+  display: none;
+}
+
+.message-body .user-msg{
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+.message-body .user-msg p{
+  background: var(--base);
+  border-radius: 10px;
+  padding: 10px;
+}
+.message-body .bot-msg{
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+}
+.message-body .bot-msg p{
+  background: rgb(173, 171, 171);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.bottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.bottom .voice-btn{
+  background: var(--base);
+  color: #ffff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.bottom .voice-btn.active{
+  background: red;
+}
