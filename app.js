@@ -33,7 +33,7 @@ function computerSpeech(words){
 
 
 function talkToThem(words){
-    if (words.includes('hello') || words.includes('hi')){
+    if (words.includes('hello') || words.includes('hi') || words.includes('hey')){
         let answer  = 'hi how i can help you '
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -41,7 +41,7 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (words.includes('what is your name ') || words.includes('your name')){
-        let answer  = 'my name is zack'
+        let answer  = 'my name is Zack'
         
         computerSpeech(answer)
         computerSpeech('wha is your name')
@@ -51,7 +51,7 @@ function talkToThem(words){
 
     }
     if (words.includes('are you a robot') || words.includes('your master') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answer  = 'i am a robot founded by engineer abdirizak abdalla hussein'
+        let answer  = 'i am a robot founded by engineer Zack abdalla hussein'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -69,7 +69,7 @@ function talkToThem(words){
 
     }
     if (words.includes('hello google') || words.includes('hey google') || words.includes('Google')){
-        let answer  = 'i am not google but we are freinds call me zack please!'
+        let answer  = 'i am not google but we are freinds call me Zack please!'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -87,17 +87,44 @@ function talkToThem(words){
         computerSpeech('what about you')
 
     }
-    if (words.includes('your developer') || words.includes('your engineer') || words.includes('do you know abdirizak')|| words.includes('abdirizak abdalla hussein')|| words.includes('abdirizak')|| words.includes('who is abdirizak') || words.includes('who developed you')){
-        let answer  = 'i am doing greate alhamdulilah';
+    if (words.includes('your developer') || words.includes('your engineer') || words.includes('do you know Zack')|| words.includes('Zack abdalla hussein')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you')){
+        let answer  = 'zack is 19 years old boy softwere engineer from somalia';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-        computerSpeech('what about you')
+
+    }
+    if ( words.includes('somalia programmers')|| words.includes('somalia coding community')){
+        let answer  = 'is gruop community on facebook they share codes tutorials extra';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+
+    }
+    if ( words.includes('fuck you')|| words.includes('pussy')){
+        let answer  = 'shame on you';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+
+    }
+    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('are you somalia') || words.includes('are you from somalia') ){
+        let answer  = 'i am from somalia ';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
 
     }
    
+    
 } 
 
 

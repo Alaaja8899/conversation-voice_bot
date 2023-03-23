@@ -107,6 +107,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 10px;
+}
+.bottom .voice-btn i{
+  font-size: 2rem;
 }
 
 .bottom .voice-btn.active{
