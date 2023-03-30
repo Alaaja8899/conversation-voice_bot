@@ -170,3 +170,22 @@
 .bottom .voice-btn.active{
   background: red;
 }
+
+.message-section{
+  position: absolute;
+  top: 10px;
+  background: #3db99a;
+  padding: 10px;
+  border-radius: 6px;
+  color: #fff;
+  animation: anim 0.4s linear;
+}
+
+@keyframes anim{
+  from{
+    transform: scale(0.0);
+  }
+  to{
+    transform: scale(1.0);
+  }
+}

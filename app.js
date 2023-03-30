@@ -21,15 +21,24 @@ recognition.onresult = (event) =>{
 
 FormData.addEventListener('submit', (event)=>{
     event.preventDefault()
-    const spokenWords = FormData.querySelector('#text').value;
-    console.log(spokenWords)
-    document.querySelector('.message-body').innerHTML+= `<div class="user-msg"><p>${spokenWords}</p></div>`
-    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-    talkToThem(spokenWords)
-    spokenWords.value = '';
+    let message = document.createElement('div')
+    message.classList.add('message-section')
+    let mvoice = 'Use voice instead of text this section working on it'
+    message.innerHTML = `<i class='bx bx-error'></i> `+mvoice
+    computerSpeech(mvoice)
+    document.querySelector('.container').append(message)
+    setTimeout(()=>{
+        removeItem(message)
+    },8000);
 
-})
 
+
+});
+
+
+function removeItem(item){
+    item.remove()
+}
 
 function computerSpeech(words){
     const speech = new SpeechSynthesisUtterance();
