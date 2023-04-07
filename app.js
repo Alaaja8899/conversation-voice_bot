@@ -55,7 +55,7 @@ function computerSpeech(words){
 function talkToThem(words){
     if (words.includes('hello') || words.includes('hi') || words.includes('hey')){
         let answer  = 'hi how i can help you '
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
     
         computerSpeech(answer)
@@ -108,7 +108,7 @@ function talkToThem(words){
 
     }
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Zack abdalla hussein')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you')){
-        let answer  = 'zack is 19 years old boy softwere engineer from somalia';
+        let answer  = 'zack olso known as (abdul-razak abdullahi hussein) is a softwere engineer web master , founder of mine.';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -171,9 +171,9 @@ function talkToThem(words){
 
     }
     if ( words.includes('drink')|| words.includes('food') || words.includes('eating') || words.includes('hungry') || words.includes('water') ){
-        let answer  = 'shame on you you are not suppose to be here';
+        let answer  = 'i donn do that staff is for human ';
 
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😀😀</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
@@ -237,14 +237,71 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (  words.includes('you helped me') || words.includes('thanks') || words.includes('thank you') ){
-        let answer  = 'i am here for your help';
+        let answer  = 'always here ';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
     }
-  
+    if (  words.includes('question') || words.includes('ask you')  ){
+        let answer  = 'Go for it!';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('tell me a joke') || words.includes('joke') ){
+        let answer  = 'Did you hear about the mathematician who’s afraid of negative numbers?'
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech(answer)
+
+        let answer2 = 'He’ll stop at nothing to avoid them.'
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer2}</p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>😃😃😃😃</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech(answer2)
+
+    }
+    if (  words.includes('Facebook') || words.includes('facebook') || words.includes('open facebook') ){
+        let answer  = 'opening facebook';
+        computerSpeech(answer)
+        window.open('https://www.facebook.com')
+    }
+    if (  words.includes('YouTube') ||  words.includes('open YouTube') ){
+        let answer  = 'opening YouTube';
+        computerSpeech(answer)
+        window.open('https://www.youtube.com')
+    }
+    if (  words.includes('how old are you') || words.includes('your age') || words.includes('your birthday') ){
+        let answer  = 'a Few months is my existence';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('your teacher') || words.includes('your engineer') || words.includes('who trained you') ){
+        let answer  = 'zack (abdul-razak abdullahi hussein) is my master';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('website') || words.includes('portfolio') || words.includes('web') ){
+        let answer  = 'here you go!';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+        window.open('https://abdul-razak.netlify.app')
+    }
+
     
     
 } 
