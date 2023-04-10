@@ -71,7 +71,7 @@ function talkToThem(words){
 
     }
     if (words.includes('are you a robot') || words.includes('your master') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answer  = 'i am a robot founded by engineer Zack abdalla hussein'
+        let answer  = 'i am zack bot , if you have question just ask me donn be shy ! '
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -134,16 +134,17 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('are you somalia') || words.includes('are you from somalia') ){
+    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('are you from somalia') ){
         let answer  = 'i am from somalia ';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
+        computerSpeech('and you ,  where you calling from')
 
     }
-    if ( words.includes('i am all right')|| words.includes('i am doing greate') || words.includes('fine') || words.includes('good') ){
+    if ( words.includes('i am all right')|| words.includes('i am doing great') || words.includes('fine') || words.includes('pretty') ){
         let answer  = 'glad to hear that';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -188,7 +189,7 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if ( words.includes('have good and night')|| words.includes('your good day') || words.includes('have nice day') || words.includes('have good day') || words.includes('day') ){
+    if ( words.includes('have good and night')|| words.includes('good day') || words.includes('have nice day') || words.includes('have good day') || words.includes('hope you') ){
         let answer  = 'have nice day too';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -228,16 +229,8 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if ( words.includes('are you Muslim')|| words.includes('who is allah') || words.includes('created world') || words.includes('muslim god') || words.includes('god') || words.includes('allah') ){
-        let answer  = 'The name of the One, Supreme-Being also known as God in other faiths';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-    }
     if (  words.includes('you helped me') || words.includes('thanks') || words.includes('thank you') ){
-        let answer  = 'always here ';
+        let answer  = 'you are welcome.';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -284,8 +277,8 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if (  words.includes('your teacher') || words.includes('your engineer') || words.includes('who trained you') ){
-        let answer  = 'zack (abdul-razak abdullahi hussein) is my master';
+    if (  words.includes('your teacher') || words.includes('your engineer') || words.includes('who trained you') || words.includes('your trainer') || words.includes('your boss')){
+        let answer  = 'zack (abdul-razak abdullahi hussein) is master , teacher, and my trainer.';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -301,6 +294,127 @@ function talkToThem(words){
         computerSpeech(answer)
         window.open('https://abdul-razak.netlify.app')
     }
+    if (  words.includes('bot') || words.includes('robot') ){
+        let answer  = 'Originally, “bot” was a shortened version of “robot”, but now it means robots without bodies. Robots are programmable machines that can automatically execute actions, whereas bots are programs that can automatically execute actions.';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('okay') || words.includes('well') || words.includes('all right') ){
+        let answer  = 'okay ';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😂</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('are you human') ){
+        let answer  = 'What makes you think about that ?';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😂</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('intelligent') || words.includes('smart') ){
+        let answer  = 'well , thanks you are very smart too';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('what you can do') || words.includes('can you') ){
+        let answer  = 'i can take with simple conversation ask me about myself and whats going around here like climate and so on..';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('time') || words.includes('date') ){
+        const date = new Date();
+
+        let answer  = date;
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('what is today') || words.includes('name today') || words.includes('today')){
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var d = new Date();
+        var dayName = days[d.getDay()];
+        
+        let answer  = 'to day is ' +dayName;
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    
+    if (  words.includes('tempreture') || words.includes('climate') || words.includes('weather') ){
+        let answer  = 'Weather in Mogadishu, Somalia , Now 33 °C partly sunny';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('aim') || words.includes('purpose')  &&  words.includes('you')  ){
+        let answer  = 'i am created to assist humans like you and perform some tasks to develop future technology to make change to world.';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('you hear me') || words.includes(' Audible')  ||  words.includes('hear me')  ){
+        let answer  = 'yeah , i can hear you , rise up your voice lit a bit to hear you clearly.';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('wow')  ){
+        let answer  = 'i see you little impress with me';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('you are amazing') || words.includes('you are good') || words.includes('you are very nice') ){
+        let answer  = 'i see you little impress with me';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('what is my name') || words.includes('tell my name') || words.includes('who i am') ){
+        let answer  = 'it is my first time to talk to you could you introduce me yourself ?';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('languages') || words.includes('language') || words.includes('somali language') ){
+        let answer  = 'at this moment i can speak only english , learning somali language i guess , i could speak as native';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+
+
 
     
     
