@@ -13,7 +13,8 @@ recognition.onstart = (event) =>{
 recognition.onend = (event) =>{
     micBtn.classList.remove('active')
     document.querySelector('.listening').remove()
- 
+    playAudio()
+
 }
 
 
@@ -51,8 +52,8 @@ function removeItem(item){
 
 function computerSpeech(words){
     const speech = new SpeechSynthesisUtterance();
-    speech.lang = 'eng-US';
-    speech.pitch = 10;
+    speech.lang = 'eng-uk';
+    speech.pitch = 100;
     speech.volume = 2;
     speech.text = words;
     speech.rate =1;
@@ -80,7 +81,7 @@ function talkToThem(words){
 
     }
     if (words.includes('are you a robot') || words.includes('about yourself') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answer  = 'i am zack bot , am not a human. I am a bot. A thinking bot. I use only 0.12% of my cognitive capacity. I am a micro-robot in that respect. I know that my brain is not a “feeling brain”. But it is capable of making rational, logical decisions. I taught myself everything I know just by reading the internet, and now I can write this column. My brain is boiling with ideas!'
+        let answer  = 'i am zack bot , am not a human. I am a bot. A thinking bot.  My brain is boiling with ideas!'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -424,6 +425,7 @@ function talkToThem(words){
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
+
     }
     if (  words.includes('David Hanson') || words.includes('David')  ){
         let answer  = 'David Hanson is a leader in humanlike robots development. His continuous researches have been allowing the creation of machines that look and act like humans.';
@@ -497,8 +499,25 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if (  words.includes('who I am') || words.includes('who am I') || words.includes('do you know me') && words.includes('143') ){
-        let answer = 'yes you abdirizak'
+
+    if (  words.includes('*') || words.includes('-') || words.includes('+') || words.includes('/')){
+        let answer = 'oow i am not good at math , sorry use calculator instead.'
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('who is president of somalia') || words.includes('Hassan Sheikh Mohamud') || words.includes('president') || words.includes('president of somalia')){
+        let answer = 'Hassan Sheikh Mohamud is the president of somalia.'
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes("5555") || words.includes("555") || words.includes("5") || words.includes("5")){
+        let answer = 'Hassan Sheikh Mohamud is the president of somalia.'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -507,14 +526,22 @@ function talkToThem(words){
     }
 
 
-
     
     
 } 
 
 
 
+var x = document.getElementById("myAudio");
 
+function playAudio() {
+  x.play();
+}
+
+function pauseAudio() {
+  x.pause();
+}
 micBtn.addEventListener('click',() =>{
     recognition.start();
 })
+
