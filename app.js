@@ -4,11 +4,20 @@ const FormData = document.querySelector('#ask')
 const recognition = new speechRecognition();
 recognition.onstart = (event) =>{
     micBtn.classList.add('active')
+    let message = `<div class="bot-msg listening"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>Listening...<i class='bx bx-user-voice'></i></p></div>`
+    
+    document.querySelector('.message-body').innerHTML+= message
+    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
 }
 recognition.onend = (event) =>{
     micBtn.classList.remove('active')
+    document.querySelector('.listening').remove()
  
 }
+
+
+
 
 
 recognition.onresult = (event) =>{
@@ -107,7 +116,7 @@ function talkToThem(words){
         computerSpeech('what about you')
 
     }
-    if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Zack abdalla hussein')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you')){
+    if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Who made you')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you') || words.includes('who made you')){
         let answer  = 'zack olso known as (abdul-razak abdullahi hussein) is a softwere engineer web master , founder of mine.';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/zack.jpg" alt="zack founder" class="m-img"></p></div>`
@@ -465,6 +474,31 @@ function talkToThem(words){
     }
     if (  words.includes('can we be friends') || words.includes('be my friend') || words.includes('friend') ){
         let answer = 'yea sure , why not ?'
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('siri') || words.includes('Siri') || words.includes('hi Siri') ){
+        let answer = 'Siri is Apple virtual assistant for iOS, macOS, tvOS and watchOS devices that uses voice recognition and is powered by artificial intelligence Like me.'
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+
+    if (  words.includes('Do you get smarter') || words.includes('do you learn') || words.includes('learning') ){
+        let answer = 'yes , i am collecting the answers you give me then adding to my cloud to return if someone else ask me.'
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('who I am') || words.includes('who am I') || words.includes('do you know me') && words.includes('143') ){
+        let answer = 'yes you abdirizak'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
