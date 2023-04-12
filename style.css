@@ -30,7 +30,7 @@
   padding: .7rem;
   display: flex;
   flex-direction: column;
-  height: 75%;
+  height: 90%;
   width: 30em;
   max-width: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -180,6 +180,15 @@
   color: #fff;
   animation: anim 0.4s linear;
 }
+
+.message-body .bot-msg .m-img{
+  width: 150px;
+  border-radius: 5px;
+
+}
+
+
+
 
 @keyframes anim{
   from{

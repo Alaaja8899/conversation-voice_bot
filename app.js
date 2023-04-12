@@ -43,17 +43,17 @@ function removeItem(item){
 function computerSpeech(words){
     const speech = new SpeechSynthesisUtterance();
     speech.lang = 'eng-US';
-    speech.pitch = 0.9;
+    speech.pitch = 100;
     speech.volume = 2;
     speech.text = words;
-    speech.rate =1;
+    speech.rate =1.5;
 
     window.speechSynthesis.speak(speech)
 }
 
 
 function talkToThem(words){
-    if (words.includes('hello') || words.includes('hi') || words.includes('hey')){
+    if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes('up') ){
         let answer  = 'hi how i can help you '
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -70,8 +70,8 @@ function talkToThem(words){
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
     }
-    if (words.includes('are you a robot') || words.includes('your master') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answer  = 'i am zack bot , if you have question just ask me donn be shy ! '
+    if (words.includes('are you a robot') || words.includes('about yourself') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
+        let answer  = 'i am zack bot , am not a human. I am a bot. A thinking bot. I use only 0.12% of my cognitive capacity. I am a micro-robot in that respect. I know that my brain is not a “feeling brain”. But it is capable of making rational, logical decisions. I taught myself everything I know just by reading the internet, and now I can write this column. My brain is boiling with ideas!'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -110,6 +110,9 @@ function talkToThem(words){
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Zack abdalla hussein')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you')){
         let answer  = 'zack olso known as (abdul-razak abdullahi hussein) is a softwere engineer web master , founder of mine.';
 
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/zack.jpg" alt="zack founder" class="m-img"></p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
@@ -134,7 +137,7 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('are you from somalia') ){
+    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('nationality') ){
         let answer  = 'i am from somalia ';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -153,8 +156,8 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if ( words.includes('love')|| words.includes('hate') || words.includes('angry') || words.includes('happy') ){
-        let answer  = 'i donn have feelings to do that you can help me to understand it more';
+    if ( words.includes('love')|| words.includes('hate') || words.includes('angry') || words.includes('happy') || words.includes('emotions') || words.includes('sad')){
+        let answer  = 'i donn have feelings, Humans have emotions such as happiness, sadness, fear, and anger; and maybe other animals have them too. Robots are getting increasingly smarter, for example, the driverless cars that are now navigating city streets. What would it take to make a robot emotional, and would we ever want them to have that capacity.';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -407,6 +410,61 @@ function talkToThem(words){
     }
     if (  words.includes('languages') || words.includes('language') || words.includes('somali language') ){
         let answer  = 'at this moment i can speak only english , learning somali language i guess , i could speak as native';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('David Hanson') || words.includes('David')  ){
+        let answer  = 'David Hanson is a leader in humanlike robots development. His continuous researches have been allowing the creation of machines that look and act like humans.';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/david.jpg" alt="david hanson and sophia" class="m-img"></p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+
+    if (  words.includes('Sophia') || words.includes('sophia') || words.includes('little sophia') || words.includes('Sofia') ){
+        let answer  = 'Sophia is a realistic humanoid robot capable of displaying humanlike expressions and interacting with people. Its designed for research, education, and entertainment, and helps promote public discussion about AI ethics and the future of robotics.';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p><img class="m-img" src="/sophia.jpg" alt="sophia bicture"></p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+
+    if (  words.includes('Muhammad') || words.includes('second boss')){
+        let answer  = 'Muhammad nur hashi (jeyte) is softwere engineer ,  web master , he is my second boss.';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('future') || words.includes('plan') || words.includes('bocme future')){
+        let answer  = 'as you now i am bot now , so i want  to bocome human robotic in early future like my freinds : "Amica" and "Sophia".';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('Amica') ){
+        let answer  = 'Ameca or (Amica)  is the world’s most advanced human shaped robot representing the forefront of human-robotics technology. Designed specifically as a platform for development into future robotics technologies, Ameca is the perfect humanoid robot platform for human-robot interaction.".';
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/amaca.jpg" alt="amaca robt" class="m-img"></p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes('can we be friends') || words.includes('be my friend') || words.includes('friend') ){
+        let answer = 'yea sure , why not ?'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
