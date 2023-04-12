@@ -43,10 +43,10 @@ function removeItem(item){
 function computerSpeech(words){
     const speech = new SpeechSynthesisUtterance();
     speech.lang = 'eng-US';
-    speech.pitch = 100;
+    speech.pitch = 10;
     speech.volume = 2;
     speech.text = words;
-    speech.rate =1.5;
+    speech.rate =1;
 
     window.speechSynthesis.speak(speech)
 }
