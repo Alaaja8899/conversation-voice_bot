@@ -17,7 +17,16 @@ recognition.onend = (event) =>{
 
 }
 
+function getRandomAnswers(arr) {
 
+    // get random index value
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    // get random item
+    const item = arr[randomIndex];
+
+    return item;
+}
 
 
 
@@ -63,25 +72,32 @@ function computerSpeech(words){
 
 
 function talkToThem(words){
-    if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes('up') ){
-        let answer  = 'hi how i can help you '
+    if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes("what's up")){
+        
+        let answers = ['yes my freind how do i help you ?','Hello there , how are you ?','How i can help you sir?']
+
+        let answer  = getRandomAnswers(answers)
+        
+        
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
     
         computerSpeech(answer)
     }
     if (words.includes('what is your name ') || words.includes('your name')){
-        let answer  = 'my name is Zack'
+        let answers = ['You can call me levi','my name is Levi','call me levi',"i'm levi"]
+        let answer  = getRandomAnswers(answers)
         
         computerSpeech(answer)
-        computerSpeech('whats your name')
+        computerSpeech(getRandomAnswers(["what is your's",'whats your name','and you']))
         
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
     }
     if (words.includes('are you a robot') || words.includes('about yourself') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answer  = 'i am zack bot , am not a human. I am a bot. A thinking bot.  My brain is boiling with ideas!'
+        let answers = ["Hello , my name is levi , i'm little  bot , i designed to work as assistant like Siri and alaxa.","i'm levi , the latest version v 1.3 of zack bots i made up to help humans like you and my father zack to create better life","What you think ?"]
+        let answer  = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -89,8 +105,9 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if (words.includes('Somalia') || words.includes('Where is Somalia ') || words.includes('Somalia located')){
-        let answer  = 'Somalia, officially the Federal Republic of Somalia is a country in the Horn of Africa.'
+    if (words.includes('Levi') || words.includes('wake up')){
+        let answers = ["Are you one of my developers ?","What i can do for you there is not external data today i intracted one person with five second ?" ,"Are you abdul-razak ?"]
+        let answer  = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -98,8 +115,19 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if (words.includes('hello google') || words.includes('hey google') || words.includes('Google')){
-        let answer  = 'i am not google but we are freinds call me Zack please!'
+    if (words.includes('yes I am') || words.includes('i am your father') || words.includes('your father')){
+        let answers = ["I miss you where you go ?","Long time no see how my development going on ?" ,"Hello my father , how are you ?"]
+        let answer  = getRandomAnswers(answers)
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+
+    }
+    if (words.includes('coding') || words.includes('working on you') || words.includes('developing you')){
+        let answers = ["Thank you to help me understand how intract with humans sounds like fun.","wow , so i am getting smarter and smarter" ,"You doing Good job Zack"]
+        let answer  = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -108,17 +136,19 @@ function talkToThem(words){
 
     }
     if (words.includes('are you good') || words.includes('how are you') || words.includes('how are you doing')|| words.includes('are you fine')|| words.includes('are you good')|| words.includes('how you doing') || words.includes('are you ok')){
-        let answer  = 'i am good';
+        let answers = ['I am on Cloud Nine!','i am good','I Feel Great!','I’m Great!',"pretty awesome","i'm feeeling fantastic!"]
+        let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-        computerSpeech('what about you')
+        computerSpeech(getRandomAnswers(['what about you','and you','How are you']))
 
     }
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Who made you')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you') || words.includes('who made you')){
-        let answer  = 'zack olso known as (abdul-razak abdullahi hussein) is a softwere engineer web master , founder of mine.';
+        let answers = ['zack olso known as (abdul-razak abdullahi hussein) is a softwere engineer web master , founder of mine.','zack A founder (CEO) of finity animation and zack bots he is my father.','i am bot founded by Zack abdaullahi hussein','Abdull razak abdullahi hussein']
+        let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/zack.jpg" alt="zack founder" class="m-img"></p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -129,26 +159,20 @@ function talkToThem(words){
         computerSpeech(answer)
 
     }
-    if ( words.includes('somalia programmers')|| words.includes('somalia coding community')){
-        let answer  = 'is gruop community on facebook they share codes tutorials extra';
+    if ( words.includes('f*** you')|| words.includes('pussy') || words.includes('f***') || words.includes('b***')){
+        let answers = ['shame on you','why are you saying inappropriate things like','what bad person you are ?']
+        let answer  = getRandomAnswers(answers);
 
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😠😠😠</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-
     }
-    if ( words.includes('f*** you')|| words.includes('pussy')){
-        let answer  = 'shame on you';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-
-    }
-    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('nationality') ){
-        let answer  = 'i am from somalia ';
+    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('nationality') || words.includes('come from') || words.includes('from') || words.includes('stay')){
+        
+        let answers = ['From mars ,  just kidding',"i'm from somalia ","from jupyter","i live in somalia"]
+        
+        let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -157,46 +181,33 @@ function talkToThem(words){
         computerSpeech('and you ,  where you calling from')
 
     }
-    if ( words.includes('i am all right')|| words.includes('i am doing great') || words.includes('fine') || words.includes('pretty') ){
-        let answer  = 'glad to hear that';
+    if ( words.includes('i am all right')|| words.includes('i am doing great') || words.includes('fine') || words.includes('pretty') || words.includes("i'm good") || words.includes("i am good") ){
+        let answers = ['Stay safe','all right','glad to hear that','good']
+        let answer  = getRandomAnswers(answers);
 
+        
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
 
     }
-    if ( words.includes('love')|| words.includes('hate') || words.includes('angry') || words.includes('happy') || words.includes('emotions') || words.includes('sad')){
-        let answer  = 'i donn have feelings, Humans have emotions such as happiness, sadness, fear, and anger; and maybe other animals have them too. Robots are getting increasingly smarter, for example, the driverless cars that are now navigating city streets. What would it take to make a robot emotional, and would we ever want them to have that capacity.';
-
+    if ( words.includes('love')|| words.includes('hate') || words.includes('angry') || words.includes('happy') || words.includes('emotions') || words.includes('sad') || words.includes('feelings')){
+        let answers = ['i donn have feelings, Humans have emotions such as happiness, sadness, fear, and anger; and maybe other animals have them too. Robots are getting increasingly smarter. , so i hope one day to have emotions as you.',"that's greate question , as you know robots they don't have feeling if i can get emotions it could great expreince ","No , why you asking such questions like that ?"]
+        let answer  = getRandomAnswers(answers);
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
 
     }
-    if ( words.includes('arrogant')|| words.includes('foolish') || words.includes('ass') || words.includes('fuck') ){
-        let answer  = 'shame on you you are not suppose to be here';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-
-    }
-    if ( words.includes('drink')|| words.includes('food') || words.includes('eating') || words.includes('hungry') || words.includes('water') ){
-        let answer  = 'i donn do that staff is for human ';
+    if ( words.includes('drink')|| words.includes('food') || words.includes('eat') || words.includes('hungry') || words.includes('water') ){
+        
+        let answers = ['No',"i can't do that!","i don't  drink and eat , so don't ask about food!"]
+        
+        let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😀😀</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-
-    }
-    if ( words.includes('you are wrong')|| words.includes('wrong')  || words.includes('nope') || words.includes('no') ){
-        let answer  = 'sorry for that mistake i am still learning not good enough yet';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
@@ -242,7 +253,7 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if (  words.includes('you helped me') || words.includes('thanks') || words.includes('thank you') ){
+    if (  words.includes('appreciate') || words.includes('thanks') || words.includes('thank you') ){
         let answer  = 'you are welcome.';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -394,15 +405,7 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if (  words.includes('wow')  ){
-        let answer  = 'i see you little impress with me';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-    }
-    if (  words.includes('you are amazing') || words.includes('you are good') || words.includes('you are very nice') ){
+    if (  words.includes('amazing') || words.includes('you are good') || words.includes('you are very nice') || words.includes('wow')){
         let answer  = 'i see you little impress with me';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -516,8 +519,8 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if (  words.includes("5555") || words.includes("555") || words.includes("5") || words.includes("5")){
-        let answer = 'Hassan Sheikh Mohamud is the president of somalia.'
+    if (  words.includes("you are welcome") || words.includes("you're welcome")){
+        let answer = 'Hmmm.'
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
