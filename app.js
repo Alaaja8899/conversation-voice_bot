@@ -1,6 +1,6 @@
 const micBtn = document.querySelector('.voice-btn')
 const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
-const FormData = document.querySelector('#ask')
+const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
 recognition.onstart = (event) =>{
     micBtn.classList.add('active')
@@ -38,21 +38,6 @@ recognition.onresult = (event) =>{
     talkToThem(spokenWords)
 }
 
-FormData.addEventListener('submit', (event)=>{
-    event.preventDefault()
-    let message = document.createElement('div')
-    message.classList.add('message-section')
-    let mvoice = 'Use voice instead of text this section working on it'
-    message.innerHTML = `<i class='bx bx-error'></i> `+mvoice
-    computerSpeech(mvoice)
-    document.querySelector('.container').append(message)
-    setTimeout(()=>{
-        removeItem(message)
-    },8000);
-
-
-
-});
 
 
 function removeItem(item){
@@ -70,6 +55,20 @@ function computerSpeech(words){
     window.speechSynthesis.speak(speech)
 }
 
+profile.addEventListener('click',() =>{
+
+    let answers = ['Hello!','Hmm , why you toching my face!',"don't do that again!","How are you ?","i'm levi what's going on!","o-o what's wrong!",'levi here!','Do you have question for me!']
+    let answer  = getRandomAnswers(answers)
+    
+    
+    document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+    computerSpeech(answer)
+
+})
+
+
 
 function talkToThem(words){
     if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes("what's up")){
@@ -80,6 +79,18 @@ function talkToThem(words){
         
         
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+    
+        computerSpeech(answer)
+    }
+    if (words.includes('are you robot') || words.includes('who is levi')){
+        
+        let answers = ["I'm levi latest bot of zack bots","Levi is programm that can help you to do your job as best as possible.","i'm assistant ask me question am here to learn from you"]
+
+        let answer  = getRandomAnswers(answers)
+        
+        
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
     
         computerSpeech(answer)
@@ -522,6 +533,14 @@ function talkToThem(words){
     if (  words.includes("you are welcome") || words.includes("you're welcome")){
         let answer = 'Hmmm.'
 
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    if (  words.includes("understand") || words.includes("understanding") || words.includes("recognize") || words.includes("how do you")){
+        let answers = ['I only recognize voices trought listening i can programmed to understand humans and intract with them.',"my algothrim works as ear and mouth it means my job is to recognize voices and answer to them.","That's all what i can do to recognize your voices and respond it as suitable answer"]
+        let answer = getRandomAnswers(answers)
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
