@@ -2,18 +2,19 @@ const micBtn = document.querySelector('.voice-btn')
 const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
 const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
+
 recognition.onstart = (event) =>{
     micBtn.classList.add('active')
     let message = `<div class="bot-msg listening"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>Listening...<i class='bx bx-user-voice'></i></p></div>`
     
     document.querySelector('.message-body').innerHTML+= message
     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
 }
 recognition.onend = (event) =>{
     micBtn.classList.remove('active')
     document.querySelector('.listening').remove()
     playAudio()
+
 
 }
 
@@ -515,7 +516,10 @@ function talkToThem(words){
     }
 
     if (  words.includes('*') || words.includes('-') || words.includes('+') || words.includes('/')){
-        let answer = 'oow i am not good at math , sorry use calculator instead.'
+        
+        let answers = ["i can't solve math problem.","i'm still learning how to solve math problems.","sorry! i couldn't found way of solution to this math problem in my algorithms"]
+
+        let answer = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -531,7 +535,9 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (  words.includes("you are welcome") || words.includes("you're welcome")){
-        let answer = 'Hmmm.'
+        let answers = ['appreciate it.',"it's ok.",'Hmmm , okay']
+
+        let answer = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -546,6 +552,17 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
+    if ( words.includes("Alexa") ){
+
+        let answer = "Alexa is Amazon's cloud-based voice service available on more than 100 million devices from Amazon and third-party device manufacturers. With Alexa, you can build natural voice experiences that offer customers a more intuitive way to interact with the technology they use every day."
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p><img class="m-img" src="/alexa.jpeg" alt="sophia bicture"></p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+
 
 
     
