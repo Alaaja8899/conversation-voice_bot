@@ -1,81 +1,3 @@
-const micBtn = document.querySelector('.voice-btn')
-const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
-const profile = document.querySelector('.profile')
-const recognition = new speechRecognition();
-
-recognition.onstart = (event) =>{
-    micBtn.classList.add('active')
-    let message = `<div class="bot-msg listening"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>Listening...<i class='bx bx-user-voice'></i></p></div>`
-    
-    document.querySelector('.message-body').innerHTML+= message
-    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-}
-recognition.onend = (event) =>{
-    micBtn.classList.remove('active')
-    document.querySelector('.listening').remove()
-    playAudio()
-
-
-}
-
-function getRandomAnswers(arr) {
-
-    // get random index value
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    // get random item
-    const item = arr[randomIndex];
-
-    return item;
-}
-
-
-
-recognition.onresult = (event) =>{
-    const spokenWords = event.results[0][0]. transcript
-    console.log(spokenWords)
-
-    document.querySelector('.message-body').innerHTML+= `<div class="user-msg"><p>${spokenWords}</p></div>`
-    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-    talkToThem(spokenWords)
-
-    console.log(isCountry(spokenWords))
-
-}
-
-
-
-function removeItem(item){
-    item.remove()
-}
-
-function computerSpeech(words){
-    const speech = new SpeechSynthesisUtterance();
-    speech.lang = 'eng-uk';
-    speech.pitch = 100;
-    speech.volume = 2;
-    speech.text = words;
-    speech.rate =1;
-
-    window.speechSynthesis.speak(speech)
-}
-
-profile.addEventListener('click',() =>{
-
-    let answers = ['Hello!','Hmm , why you toching my face!',"don't do that again!","How are you ?","i'm levi what's going on!","o-o what's wrong!",'levi here!','Do you have question for me!']
-    let answer  = getRandomAnswers(answers)
-    
-    
-    document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-    computerSpeech(answer)
-
-})
-
-
-
-function talkToThem(words){
     if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes("what's up")){
         
         let answers = ['yes my freind how do i help you ?','Hello there , how are you ?','How i can help you sir?']
@@ -193,12 +115,11 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('nationality') || words.includes('come from')  || words.includes('stay')){
+    if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('nationality') || words.includes('come from') || words.includes('from') || words.includes('stay')){
         
         let answers = [
-            "from somalia",
-            "i live in somalia",
-            "chatting from somalia"
+
+
         ]
         
         let answer  = getRandomAnswers(answers);
@@ -589,267 +510,90 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
+
+
+
+
+    let foundQuestion = false;
+    for (let i = 0; i < questions.length; i++) {
+      if (words.includes(questions[i])) {
+        // If the question matches, select a random answer from an array of possible answers
+        const answers = [
+          "I'm sorry, I didn't catch that. Could you please repeat what you said?",
+          "I'm not programmed to answer that question. Is there anything else I can help you with?",
+          "I'm not sure what you mean. Can you please clarify?"
+        ];
+        const answer = getRandomAnswers(answers);
     
-    if ( words.includes("no") ||words.includes("don't understand") ||words.includes("nope")){
-
-        let answers = [
-            "I'm sorry, I didn't catch that. Could you please repeat what you said?",
-            "I'm not programmed to answer that question. Is there anything else I can help you with?",
-            "I'm not sure what you mean. Can you please clarify?"
-        ]
-
-        let answer = getRandomAnswers(answers)
-
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        // Display the answer in the chat window and speak it out loud
+        const message = `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+        document.querySelector('.message-body').innerHTML += message;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
+        computerSpeech(answer);
+    
+        // Set a flag to indicate that a question was found and break out of the loop
+        foundQuestion = true;
+        break;
+      }
     }
-
+    
+    // If no question was found, display a default message
+    if (!foundQuestion) {
+      const answer = "Sorry, I didn't understand your question. Could you please rephrase it or ask me something else?";
+      const message = `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+      document.querySelector('.message-body').innerHTML += message;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(answer);
+    }
+    
 
 
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // let que = [
+
+    //     "3",
+    //     "2",
+    //     "11",
+
+    // ]
+
+
+    // que.forEach(question =>{
+    //     if ( words.includes(question)){
+
+    //         let answers = [
+    //             "I'm sorry, I didn't catch that. Could you please repeat what you said?",
+    //             "I'm not programmed to answer that question. Is there anything else I can help you with?",
+    //             "I'm not sure what you mean. Can you please clarify?"
+    //         ]
     
-} 
+    //         let answer = getRandomAnswers(answers)
+    
+    
+    //         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+    //         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+    
+    //         computerSpeech(answer)
+       
+        
+    //     }    
+    // })
 
 
-
-var x = document.getElementById("myAudio");
-
-
-
-
-
-
-
-function isCountry(word){
-    const countries = [
-        "Afghanistan",
-        "Albania",
-        "Algeria",
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bhutan",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cabo Verde",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Central African Republic (CAR)",
-        "Chad",
-        "Chile",
-        "China",
-        "Colombia",
-        "Comoros",
-        "Democratic Republic of the Congo",
-        "Republic of the Congo",
-        "Costa Rica",
-        "Cote d'Ivoire",
-        "Croatia",
-        "Cuba",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "Gabon",
-        "Gambia",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macedonia (FYROM)",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montenegro",
-        "Morocco",
-        "Mozambique",
-        "Myanmar (Burma)",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Netherlands",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "North Korea",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Saint Vincent and the Grenadines",
-        "Samoa",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "South Korea",
-        "South Sudan",
-        "Spain",
-        "Sri Lanka",
-        "Sudan",
-        "Suriname",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syria",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Togo",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Turkey"]
-
-        for (let i = 0; i < countries.length; i++) {
-              if (word.includes(countries[i])) {
-                    getCapitalCity(countries[i])
-              }
-            }
-            return null;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getCapitalCity(countryName) {
-    for (let i = 0; i < country_city.length; i++) {
-      if (country_city[i].country.toLowerCase() === countryName.toLowerCase()) {
-        let answer = 'The capital city of '+countryName+' is '+country_city[i].city;
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-
-    }
-    }
-  }
-
-function playAudio() {
-  x.play();
-}
-
-function pauseAudio() {
-  x.pause();
-}
-micBtn.addEventListener('click',() =>{
-    recognition.start();
-})
-
+// Define an array of questions to handle
+let  questions = ["3", "2", "nop"];
+// Loop through each question and check if it matches the user's i    
