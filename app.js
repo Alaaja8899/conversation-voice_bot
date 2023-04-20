@@ -402,12 +402,15 @@ function talkToThem(words){
     }
     if (  words.includes('what is today') || words.includes('name today') || words.includes('today')){
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var maanta = ['Axad', 'Isniin', 'Talaado', 'Arbaco', 'Khamiis', 'Jimco', 'Sabti'];
         var d = new Date();
         var dayName = days[d.getDay()];
+        var mMaanta = 'Maanta waa '+maanta[d.getDay()];
         
         let answer  = 'to day is ' +dayName;
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${mMaanta}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
@@ -680,17 +683,6 @@ function talkToThem(words){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 } 
 
 
@@ -932,3 +924,42 @@ micBtn.addEventListener('click',() =>{
     recognition.start();
 })
 
+
+
+
+
+
+const apiKey = 'YOUR_API_KEY';
+const apiSecret = 'YOUR_API_SECRET';
+const baseUrl = 'https://tts.nuancemobility.net:443';
+
+const textToSpeech = (text) => {
+  const url = `${baseUrl}/v1/synthesize`;
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Basic ${btoa(`${apiKey}:${apiSecret}`)}`
+  };
+  const body = {
+    'text': text,
+    'outputFormat': 'mp3',
+    'voice': {
+      'name': 'Susan',
+      'language': 'en-US'
+    }
+  };
+
+  fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(body)
+  })
+  .then(response => response.blob())
+  .then(blob => {
+    const audioUrl = URL.createObjectURL(blob);
+    const audio = new Audio(audioUrl);
+    audio.play();
+  })
+  .catch(error => console.error(error));
+};
+
+textToSpeech('Hello, how are you?');
