@@ -29,20 +29,74 @@ function getRandomAnswers(arr) {
     return item;
 }
 
+let Name = null;
 
-
-recognition.onresult = (event) =>{
-    const spokenWords = event.results[0][0]. transcript
-    console.log(spokenWords)
-
-    document.querySelector('.message-body').innerHTML+= `<div class="user-msg"><p>${spokenWords}</p></div>`
+recognition.onresult = (event) => {
+    const spokenWords = event.results[0][0].transcript;
+    console.log(spokenWords);
+  
+    document.querySelector('.message-body').innerHTML += `<div class="user-msg"><p>${spokenWords}</p></div>`;
     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-    talkToThem(spokenWords)
-
-    console.log(isCountry(spokenWords))
-
-}
-
+  
+    if (containsMathProblem(spokenWords)) {
+      const solution = solveMathProblem(spokenWords);
+      document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>The solution is ${solution}.</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(`The solution is ${solution}.`);
+    } else {
+      let name = getName(spokenWords);
+      if (name) {
+        let answer = `Nice to meet you, ${name}. How can I assist you today?`;
+        document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech(answer);
+      } else {
+        talkToThem(spokenWords);
+        isCountry(spokenWords);
+      }
+    }
+  };
+  
+  function getName(words) {
+    const nameRegex = /my name is (\w+)/i;
+    const match = words.match(nameRegex);
+    if (match) {
+        localStorage.setItem('Name', match[1]);
+        return match[1];
+    } else {
+      return null;
+    }
+  };
+  function containsMathProblem(words) {
+    const mathRegex = /(\d+)(\s*)([\+\-\*\/])(\s*)(\d+)/;
+    return mathRegex.test(words);
+  }
+  
+  function solveMathProblem(words) {
+    const mathRegex = /(\d+)(\s*)([\+\-\*\/])(\s*)(\d+)/;
+    const match = words.match(mathRegex);
+    const num1 = parseInt(match[1]);
+    const num2 = parseInt(match[5]);
+    const operator = match[3];
+    let solution = 0;
+    switch (operator) {
+      case '+':
+        solution = num1 + num2;
+        break;
+      case '-':
+        solution = num1 - num2;
+        break;
+      case '*':
+        solution = num1 * num2;
+        break;
+      case '/':
+        solution = num1 / num2;
+        break;
+      default:
+        solution = 0;
+    }
+    return solution;
+  }
 
 
 function removeItem(item){
@@ -266,14 +320,6 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if ( words.includes('my name is')|| words.includes('i am ') || words.includes('my name') ){
-        let answer  = 'nice to meet you ';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-    }
     if ( words.includes('are you Muslim')|| words.includes('Muslim') || words.includes('muslim') || words.includes('your religion') || words.includes('Christian') || words.includes('christian') ){
         let answer  = 'i am muslim alhamdulilah';
 
@@ -454,14 +500,6 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-    if (  words.includes('what is my name') || words.includes('tell my name') || words.includes('who i am') ){
-        let answer  = 'it is my first time to talk to you could you introduce me yourself ?';
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-    }
     if (  words.includes('languages') || words.includes('language') || words.includes('somali language') ){
         let answer  = 'at this moment i can speak only english , learning somali language i guess , i could speak as native';
 
@@ -543,18 +581,6 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-
-    if (  words.includes('*') || words.includes('-') || words.includes('+') || words.includes('/')){
-        
-        let answers = ["i can't solve math problem.","i'm still learning how to solve math problems.","sorry! i couldn't found way of solution to this math problem in my algorithms"]
-
-        let answer = getRandomAnswers(answers)
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-    }
     if (  words.includes('who is president of somalia') || words.includes('Hassan Sheikh Mohamud') || words.includes('president') || words.includes('president of somalia')){
         let answer = 'Hassan Sheikh Mohamud is the president of somalia.'
 
@@ -626,7 +652,7 @@ function talkToThem(words){
             "https://youtu.be/Gdeq9lNTamE",
             "https://youtu.be/CnqmmsfxVqM"
         ]
-
+        
         let answer = 'playing song on YouTube';
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -679,7 +705,28 @@ function talkToThem(words){
 
         computerSpeech(answer)
     }
-
+  
+    if (words.includes("speak Somali") || words.includes("Somali language")) {
+        let answer = "Hadda waxaan ku hadli karaa ingiriisiga bas lakin luqado badan inaa ku hadlo waa rajaynaa inshallah."
+        document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+  
+    }
+    if (words.includes("my name") || words.includes("who am I") || words.includes("who I am")|| words.includes("know me")|| words.includes("remember me")) {
+        
+        let name = localStorage.getItem('Name');
+        let answers = [
+            "You are "+name,
+            "Are you "+name,
+            name+"is the name that I was given.",
+            "You told me that your name is "+name,
+            "Yo my boy "+name
+        ]
+        let answer = getRandomAnswers(answers);
+        document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech(answer)
+    }
 
 
 
