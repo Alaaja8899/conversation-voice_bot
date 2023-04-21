@@ -715,14 +715,24 @@ function talkToThem(words){
     if (words.includes("my name") || words.includes("who am I") || words.includes("who I am")|| words.includes("know me")|| words.includes("remember me")) {
         
         let name = localStorage.getItem('Name');
-        let answers = [
-            "You are "+name,
-            "Are you "+name,
-            name+"is the name that I was given.",
-            "You told me that your name is "+name,
-            "Yo my boy "+name
-        ]
-        let answer = getRandomAnswers(answers);
+        if (name == null){
+                let answers = [
+                    "Excuse me, but I believe this is the first time we've met. Would you mind telling me your name?",
+                    "Hi there, I don't think we've been introduced yet. Can you share your name with me?",
+                    "Hey, I'm not sure if we've met yet. What's your name?",
+                    "I'm sorry, but I don't think we've been properly introduced. Can you tell me your name?"
+                ]
+        }
+        else{
+            let answers = [
+                "You are "+name,
+                "Are you "+name,
+                name+"is the name that I was given.",
+                "You told me that your name is "+name,
+                "Yo my boy "+name
+            ]
+        }
+        let answer = getRandomAnswers(answers);    
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         computerSpeech(answer)
