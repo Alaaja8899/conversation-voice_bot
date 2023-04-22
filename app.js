@@ -4,6 +4,7 @@ const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
 
 recognition.onstart = (event) =>{
+    window.speechSynthesis.cancel()
     micBtn.classList.add('active')
     let message = `<div class="bot-msg listening"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>Listening...<i class='bx bx-user-voice'></i></p></div>`
     
@@ -163,7 +164,6 @@ function talkToThem(words){
         
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
     }
     if (words.includes('are you a robot') || words.includes('about yourself') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
         let answers = ["Hello , my name is levi , i'm little  bot , i designed to work as assistant like Siri and alaxa.","i'm levi , the latest version v 1.3 of zack bots i made up to help humans like you and my father zack to create better life","What you think ?"]
@@ -715,28 +715,21 @@ function talkToThem(words){
     if (words.includes("my name") || words.includes("who am I") || words.includes("who I am")|| words.includes("know me")|| words.includes("remember me")) {
         
         let name = localStorage.getItem('Name');
-        if (name == null){
-                let answers = [
-                    "Excuse me, but I believe this is the first time we've met. Would you mind telling me your name?",
-                    "Hi there, I don't think we've been introduced yet. Can you share your name with me?",
-                    "Hey, I'm not sure if we've met yet. What's your name?",
-                    "I'm sorry, but I don't think we've been properly introduced. Can you tell me your name?"
-                ]
-        }
-        else{
+ 
             let answers = [
                 "You are "+name,
-                "Are you "+name,
+                "isn't  you "+name,
                 name+"is the name that I was given.",
                 "You told me that your name is "+name,
-                "Yo my boy "+name
+                "i guess your name is "+name+" isn't it ?"
             ]
-        }
         let answer = getRandomAnswers(answers);    
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         computerSpeech(answer)
     }
+
+
 
 
 
@@ -986,37 +979,3 @@ micBtn.addEventListener('click',() =>{
 
 
 
-const apiKey = 'YOUR_API_KEY';
-const apiSecret = 'YOUR_API_SECRET';
-const baseUrl = 'https://tts.nuancemobility.net:443';
-
-const textToSpeech = (text) => {
-  const url = `${baseUrl}/v1/synthesize`;
-  const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Basic ${btoa(`${apiKey}:${apiSecret}`)}`
-  };
-  const body = {
-    'text': text,
-    'outputFormat': 'mp3',
-    'voice': {
-      'name': 'Susan',
-      'language': 'en-US'
-    }
-  };
-
-  fetch(url, {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify(body)
-  })
-  .then(response => response.blob())
-  .then(blob => {
-    const audioUrl = URL.createObjectURL(blob);
-    const audio = new Audio(audioUrl);
-    audio.play();
-  })
-  .catch(error => console.error(error));
-};
-
-textToSpeech('Hello, how are you?');
