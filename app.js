@@ -553,8 +553,8 @@ function talkToThem(words){
     }
 
     if (  words.includes('Muhammad') || words.includes('second boss')){
-        let answer  = 'Muhammad nur hashi (jeyte) is softwere engineer ,  web master , he is my second boss.';
-
+        let answer  = "Muhammad nur hashi (jeyte) is softwere engineer , and zack's best freind ever  , he is my second boss.";
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/moha.jpeg" alt="amaca robt" class="m-img"></p></div>`
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
