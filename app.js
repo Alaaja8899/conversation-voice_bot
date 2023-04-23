@@ -46,6 +46,8 @@ recognition.onresult = (event) => {
       document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>The solution is ${solution}.</p></div>`;
       $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
       computerSpeech(`The solution is ${solution}.`);
+    } else if (spokenWords.toLowerCase().includes('repeat after me')) {
+      repeatAfterMe(spokenWords);
     } else {
       let name = getName(spokenWords);
       if (name) {
@@ -61,8 +63,6 @@ recognition.onresult = (event) => {
       }
     }
   };
-  
-
   function rememberSomething(spokenWords) {
     const regex = /remember (.*)/i;
     const match = spokenWords.match(regex);
@@ -1041,3 +1041,10 @@ function tellMeWhatYouRemember() {
       }
     }
   } 
+
+  function repeatAfterMe(spokenWords) {
+    const repeatPhrase = spokenWords.toLowerCase().replace('repeat after me', '');
+    document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${repeatPhrase}</p></div>`;
+    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+    computerSpeech(repeatPhrase);
+  }
