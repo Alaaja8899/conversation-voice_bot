@@ -32,6 +32,8 @@ function getRandomAnswers(arr) {
 
 let Name = null;
 
+let brain = []
+
 recognition.onresult = (event) => {
     const spokenWords = event.results[0][0].transcript;
     console.log(spokenWords);
@@ -52,12 +54,31 @@ recognition.onresult = (event) => {
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         computerSpeech(answer);
       } else {
+        rememberSomething(spokenWords)
         talkToThem(spokenWords);
         isCountry(spokenWords);
+        forgetSomething(spokenWords)
       }
     }
   };
   
+
+  function rememberSomething(spokenWords) {
+    const regex = /remember (.*)/i;
+    const match = spokenWords.match(regex);
+    if (match) {
+      const thingToRemember = match[1];
+      brain.push(thingToRemember);
+      const answer = `Okay, I will remember ${thingToRemember}.`;
+      document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(answer);
+    }
+  }
+
+
+
+
   function getName(words) {
     const nameRegex = /my name is (\w+)/i;
     const match = words.match(nameRegex);
@@ -712,6 +733,9 @@ function talkToThem(words){
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
   
     }
+
+
+
     if (words.includes("my name") || words.includes("who am I") || words.includes("who I am")|| words.includes("know me")|| words.includes("remember me")) {
         
         let name = localStorage.getItem('Name');
@@ -723,10 +747,15 @@ function talkToThem(words){
                 "You told me that your name is "+name,
                 "i guess your name is "+name+" isn't it ?"
             ]
-        let answer = getRandomAnswers(answers);    
+
+
+            let answer = getRandomAnswers(answers);    
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         computerSpeech(answer)
+    }
+    if (words.includes("what is in your mind") || words.includes("what you remember") || words.includes("list")|| words.includes("give the data")|| words.includes("remember me")) {
+        tellMeWhatYouRemember()
     }
 
 
@@ -978,4 +1007,37 @@ micBtn.addEventListener('click',() =>{
 
 
 
+function tellMeWhatYouRemember() {
+    if (brain.length > 0) {
+      const answer = `I remember the following things: ${brain.join(", ")}.`;
+      document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(answer);
+    } else {
+      const answer = "I don't remember anything yet.";
+      document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(answer);
+    }
+  }
 
+  function forgetSomething(spokenWords) {
+    const regex = /forget (.*)/i;
+    const match = spokenWords.match(regex);
+    if (match) {
+      const thingToForget = match[1];
+      const index = brain.includes(thingToForget);
+      if (index) {
+        brain.splice(index, 1);
+        const answer = `Okay, I forgot ${thingToForget}.`;
+        document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech(answer);
+      } else {
+        const answer = `I don't remember ${thingToForget}.`;
+        document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech(answer);
+      }
+    }
+  } 
