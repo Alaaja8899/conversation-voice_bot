@@ -3,6 +3,9 @@ const speechRecognition = window.speechRecognition || window.webkitSpeechRecogni
 const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
 
+
+
+
 recognition.onstart = (event) =>{
     window.speechSynthesis.cancel()
     micBtn.classList.add('active')
@@ -136,23 +139,8 @@ function computerSpeech(words){
     speech.volume = 2;
     speech.text = words;
     speech.rate =1;
-
     window.speechSynthesis.speak(speech)
 }
-
-profile.addEventListener('click',() =>{
-
-    let answers = ['Hello!','Hmm , why you toching my face!',"don't do that again!","How are you ?","i'm levi what's going on!","o-o what's wrong!",'levi here!','Do you have question for me!']
-    let answer  = getRandomAnswers(answers)
-    
-    
-    document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-    computerSpeech(answer)
-
-})
-
 
 
 function talkToThem(words){
@@ -181,17 +169,16 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (words.includes('what is your name ') || words.includes('your name')){
-        let answers = ['You can call me levi','my name is Levi','call me levi',"i'm levi"]
+        let answers = ["You can call me levi , what is your's ?",'my name is Levi , whats your name ?','call me levi  , what about you ?',"i'm levi , and you ?"]
         let answer  = getRandomAnswers(answers)
         
         computerSpeech(answer)
-        computerSpeech(getRandomAnswers(["what is your's",'whats your name','and you']))
         
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
     }
     if (words.includes('are you a robot') || words.includes('about yourself') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answers = ["Hello , my name is levi , i'm little  bot , i designed to work as assistant like Siri and alaxa.","i'm levi , the latest version v 1.3 of zack bots i made up to help humans like you and my father zack to create better life","What you think ?"]
+        let answers = ["Hello, I am Levi, a small but powerful bot designed to work as a personal assistant, similar to Siri and Alexa. My main purpose is to assist you in any way I can, whether it's answering questions, providing information, or helping you with tasks.","Hello, my name is Levi and I am the latest version (v 1.3) of Zack Bot. I am designed to assist people and I specialize in geography. You can ask me about the capital cities of different countries."]
         let answer  = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -247,7 +234,6 @@ function talkToThem(words){
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-        computerSpeech(getRandomAnswers())
 
     }
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Who made you')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you') || words.includes('who made you')){
@@ -262,15 +248,6 @@ function talkToThem(words){
 
         computerSpeech(answer)
 
-    }
-    if ( words.includes('f*** you')|| words.includes('pussy') || words.includes('f***') || words.includes('b***')){
-        let answers = ['shame on you','why are you saying inappropriate things like','what bad person you are ?']
-        let answer  = getRandomAnswers(answers);
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😠😠😠</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
     }
     if ( words.includes('where are you from')|| words.includes('your country') || words.includes('where you came from') || words.includes('nationality') || words.includes('come from')  || words.includes('stay')){
         
@@ -765,7 +742,6 @@ function talkToThem(words){
 
 
 
-
 } 
 
 
@@ -1057,7 +1033,7 @@ function tellMeWhatYouRemember() {
 
 
   function generateImage(words) {
-    if (words.toLowerCase().includes('show me')) {
+    if (words.toLowerCase().includes('imagine')) {
       const query = words.toLowerCase().replace('show me', '').trim();
       fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=tEzsN8kmglMgxzoaLhocczzt9Zpz7mYZt8ebtCOvDFg`)
       .then(response => response.json())
