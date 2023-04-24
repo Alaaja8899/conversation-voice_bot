@@ -60,9 +60,13 @@ recognition.onresult = (event) => {
         talkToThem(spokenWords);
         isCountry(spokenWords);
         forgetSomething(spokenWords)
+        generateImage(spokenWords)
       }
     }
   };
+
+
+  
   function rememberSomething(spokenWords) {
     const regex = /remember (.*)/i;
     const match = spokenWords.match(regex);
@@ -679,7 +683,7 @@ function talkToThem(words){
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-        window.open(getRandomAnswers(songs))
+        window.open("https://appla-player.netlify.app/")
     }
 
 
@@ -1047,4 +1051,32 @@ function tellMeWhatYouRemember() {
     document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${repeatPhrase}</p></div>`;
     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
     computerSpeech(repeatPhrase);
+  }
+
+
+
+
+  function generateImage(words) {
+    if (words.toLowerCase().includes('show me')) {
+      const query = words.toLowerCase().replace('show me', '').trim();
+      fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=tEzsN8kmglMgxzoaLhocczzt9Zpz7mYZt8ebtCOvDFg`)
+      .then(response => response.json())
+      .then(data => {
+        // Get a random image from the search results
+        const image = data.results[Math.floor(Math.random() * data.results.length)];
+  
+        // Create an image element and set its source to the selected image
+        const img = document.createElement('img');
+        img.src = image.urls.regular;
+  
+        // Create a bot message element with the image
+        const botMsg = document.createElement('div');
+        botMsg.classList.add('bot-msg');
+        botMsg.innerHTML = `<span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p><img class="m-img" src="${img.src}" alt="image"></p>`;
+        document.querySelector('.message-body').appendChild(botMsg);
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      })
+      .catch(error => console.error(error));
+    }
   }
