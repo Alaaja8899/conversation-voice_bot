@@ -64,6 +64,8 @@ recognition.onresult = (event) => {
         isCountry(spokenWords);
         forgetSomething(spokenWords)
         generateImage(spokenWords)
+        getDictionary(spokenWords)
+        noSpoken(spokenWords)
       }
     }
   };
@@ -266,7 +268,7 @@ function talkToThem(words){
         computerSpeech('and you ,  where you calling from')
 
     }
-    if ( words.includes('i am all right')|| words.includes('i am doing great') || words.includes('fine') || words.includes('pretty') || words.includes("i'm good") || words.includes("i am good") ){
+    if ( words.includes('i am all right')|| words.includes('i am doing great') || words.includes('i am fine') || words.includes("i'm good") || words.includes("i am  good") || words.includes("i'm fine") ){
         let answers = ['Stay safe','all right','glad to hear that','good']
         let answer  = getRandomAnswers(answers);
 
@@ -323,7 +325,12 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if ( words.includes('are you Muslim')|| words.includes('Muslim') || words.includes('muslim') || words.includes('your religion') || words.includes('Christian') || words.includes('christian') ){
-        let answer  = 'i am muslim alhamdulilah';
+        let answers = [
+            "I practice the Islamic faith, alhamdulillah.",
+            "i am muslim alhamdulilah",
+            "I am blessed to be a Muslim, alhamdulillah.",
+        ]
+        let answer  =getRandomAnswers(answers) ;
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -487,7 +494,15 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (  words.includes('you hear me') || words.includes(' Audible')  ||  words.includes('hear me')  ){
-        let answer  = 'yeah , i can hear you , rise up your voice lit a bit to hear you clearly.';
+        let answers = [
+            'yeah , i can hear you , rise up your voice lit a bit to hear you clearly.',
+            "Can you speak up a little? I'm having trouble hearing you.",
+            "Sorry, could you repeat that a bit louder?",
+            "I'm having difficulty hearing you. Could you raise your voice a bit?",
+            "Speak up! I can't hear you clearly.",
+            "Could you please speak a bit louder? It's hard to hear you."
+        ]
+        let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -1055,4 +1070,59 @@ function tellMeWhatYouRemember() {
       })
       .catch(error => console.error(error));
     }
+  }
+
+
+function noSpoken(spokenWords){
+    if (spokenWords.length == 0){
+
+        let answers = [
+            ' what was that?',
+            "Can you please clarify what you meant?",
+            "Could you  say that again?",
+            "Can you say that again?"
+        ]
+        let answer = getRandomAnswers(answers)
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+function getDictionary(words) {
+    const nameRegex = /(?:meaning of|Define) (\w+)/i;
+    const match = words.match(nameRegex);    
+    let word = match[1];
+    console.log(word);
+    $.ajax({
+      method: 'GET',
+      url: 'https://api.api-ninjas.com/v1/dictionary?word=' + word,
+      headers: { 'X-Api-Key': 'illML6cZ3q677VHSpCeUnA==QAv56pdQLABaZiUs'},
+      contentType: 'application/json',
+      success: function(result) {
+        const noListRegex = /^\d+\.\s+/gm;
+        let joogsi =  /2\..*/s;
+        let answer = result.definition.split('\n')[0].replace(noListRegex, '').replace(joogsi, '');
+   
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+      },
+      error: function ajaxError(jqXHR) {
+        console.error('Error: ', jqXHR.responseText);
+      }
+    });  
   }
