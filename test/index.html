@@ -1,54 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Emotion Detection</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
-    <script src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
-    <style>
-      .profile {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-      .profile .video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .camera .video {
-        transform: scaleX(-1);
-      }
-    </style>
-  </head>
-  <body>
-    <div class="profile">
-      <video class="video"></video>
-    </div>
-    <script>
-      function detectEmotions() {
-        document.querySelector('.profile').classList.add('camera');
-        let scVideo = document.querySelector('.profile .video');
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true, sound: true }).then(stream => {
-            scVideo.srcObject = stream;
-            scVideo.play();
-            const faceDetector = new faceapi.TinyFaceDetectorOptions();
-            const emotionModel = new faceapi.SsdMobilenetv1EmotionNet();
-            faceapi.detectSingleFace(scVideo, faceDetector).withFaceExpressions().then(expressions => {
-              console.log(expressions);
-              // Do something with the detected emotions
-            });
-          });
-        }
-      }
-      detectEmotions();
-    </script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blinking eye </title>
+<style>
+  body{
+    background: #000;
+  }
+  .support-icon {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.support-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 60px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  transform: translate(-50%, 50%);
+}
+
+.support-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.support-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #666;
+}
+</style>
+</head>
+<body>
+  
+
+  <div class="support-icon">
+    <div class="support-base"></div>
+    <div class="support-handle"></div>
+    <div class="support-text">SUPPORT</div>
+  </div>
+
+
+
+</body>
 </html>

@@ -40,6 +40,10 @@ let brain = []
 recognition.onresult = (event) => {
     const spokenWords = event.results[0][0].transcript;
     console.log(spokenWords);
+
+    if (spokenWords.trim().length === 0){
+        recognition.start();
+      }
   
     document.querySelector('.message-body').innerHTML += `<div class="user-msg"><p>${spokenWords}</p></div>`;
     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
@@ -70,6 +74,7 @@ recognition.onresult = (event) => {
     }
   };
 
+  recognition.start();
 
   
   function rememberSomething(spokenWords) {
@@ -142,6 +147,12 @@ function computerSpeech(words){
     speech.text = words;
     speech.rate =1;
     window.speechSynthesis.speak(speech)
+
+
+    // start speech recognition when speech ends
+    speech.onend = () => {
+        recognition.start();
+    }
 }
 
 
@@ -762,6 +773,21 @@ function talkToThem(words){
     if (words.includes("what is in your mind") || words.includes("what you remember") || words.includes("list")|| words.includes("give the data")|| words.includes("remember me")) {
         tellMeWhatYouRemember()
     }
+    if (words.includes("sleep")  ) {
+        let name = localStorage.getItem('Name');
+        reverseDetectFace();
+        let answers = [
+            "Going to sleep",
+            "See you later "+name
+        ]
+        let answer = getRandomAnswers(answers)
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+
+    }
 
 
 
@@ -1077,7 +1103,9 @@ function tellMeWhatYouRemember() {
         document.querySelector('.message-body').appendChild(botMsg);
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-      })
+        recognition.start();
+
+    })
       .catch(error => console.error(error));
     }
   }
@@ -1112,7 +1140,7 @@ function noSpoken(spokenWords){
 
 
 function getDictionary(words) {
-    const nameRegex = /(?:meaning of|Define) (\w+)/i;
+    const nameRegex = /(?:meaning of|Define|what is) (\w+)/i;
     const match = words.match(nameRegex);    
     let word = match[1];
     console.log(word);
@@ -1137,15 +1165,34 @@ function getDictionary(words) {
     });  
   }
 
+  let mediaStream = null;
 
   function detectFace(){
-    document.querySelector('.profile img').style.display = 'none';
-    let scVideo = document.querySelector('.profile .video')
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
-        navigator.mediaDevices.getUserMedia({video:true, sound:true}).then(sream =>{
-            scVideo.srcObject = sream
-            scVideo.play();
-        })
-    }
+      document.querySelector('.profile img').style.display = 'none';
+      let scVideo = document.querySelector('.profile .video')
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+          navigator.mediaDevices.getUserMedia({video:true, sound:true}).then(stream =>{
+              mediaStream = stream;
+              scVideo.srcObject = stream;
+              scVideo.play();
+          })
+      }
   }
+  
+  function stopStream(){
+      if (mediaStream){
+          mediaStream.getTracks().forEach(track => {
+              track.stop();
+          });
+          mediaStream = null;
+      }
+  }
+  function reverseDetectFace(){
+    document.querySelector('.profile img').style.display = 'block';
+    let scVideo = document.querySelector('.profile .video')
+    scVideo.pause();
+    scVideo.srcObject = null;
+    stopStream();
+}
+
 
