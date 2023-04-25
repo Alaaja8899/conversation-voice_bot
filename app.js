@@ -190,14 +190,23 @@ function talkToThem(words){
 
     }
     if (words.includes('Levi') || words.includes('wake up')){
-        let answers = ["Are you one of my developers ?","What i can do for you there is not external data today i intracted one person with five second ?" ,"Are you abdul-razak ?"]
+        let name = localStorage.getItem('Name');
+        let answers = [
+            "Open the camera",
+            "Allow me to use you camera to see you",
+            "is that you "+name,
+            "First time i see the face "+name,
+            "I need permission to use your camera to recognize your face.",
+            "Your sound's familiar to me can i see you "+name
+        ]
+
         let answer  = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-
+        detectFace();
     }
     if (words.includes('yes I am') || words.includes('i am your father') || words.includes('your father')){
         let answers = ["I miss you where you go ?","Long time no see how my development going on ?" ,"Hello my father , how are you ?"]
@@ -757,6 +766,7 @@ function talkToThem(words){
 
 
 
+
 } 
 
 
@@ -1126,3 +1136,16 @@ function getDictionary(words) {
       }
     });  
   }
+
+
+  function detectFace(){
+    document.querySelector('.profile img').style.display = 'none';
+    let scVideo = document.querySelector('.profile .video')
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+        navigator.mediaDevices.getUserMedia({video:true, sound:true}).then(sream =>{
+            scVideo.srcObject = sream
+            scVideo.play();
+        })
+    }
+  }
+

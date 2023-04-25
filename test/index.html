@@ -1,15 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test bot</title>
-</head>
-<body>
-    
-
-
-    <script src="/app.js"></script>
-</body>
+    <title>Emotion Detection</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+    <style>
+      .profile {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .profile .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .camera .video {
+        transform: scaleX(-1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile">
+      <video class="video"></video>
+    </div>
+    <script>
+      function detectEmotions() {
+        document.querySelector('.profile').classList.add('camera');
+        let scVideo = document.querySelector('.profile .video');
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true, sound: true }).then(stream => {
+            scVideo.srcObject = stream;
+            scVideo.play();
+            const faceDetector = new faceapi.TinyFaceDetectorOptions();
+            const emotionModel = new faceapi.SsdMobilenetv1EmotionNet();
+            faceapi.detectSingleFace(scVideo, faceDetector).withFaceExpressions().then(expressions => {
+              console.log(expressions);
+              // Do something with the detected emotions
+            });
+          });
+        }
+      }
+      detectEmotions();
+    </script>
+  </body>
 </html>
