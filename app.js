@@ -259,7 +259,7 @@ function talkToThem(words){
 
     }
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Who made you')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you') || words.includes('who made you')){
-        let answers = ['You programmed me','zack A founder (CEO) of finity animation and zack bots he is my father.','i am bot founded by Zack abdaullahi hussein','Abdull razak abdullahi hussein']
+        let answers = ['You programmed me','You founded me boss','i am bot founded by Abdul-razak abdaullahi hussein','Abdull razak abdullahi hussein']
         let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/zack.jpg" alt="zack founder" class="m-img"></p></div>`
@@ -665,6 +665,19 @@ function talkToThem(words){
         ]
 
         let answer = getRandomAnswers(answers)
+
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    
+    if ( words.includes("where we are now") ||words.includes("event") ||words.includes("now")){
+
+        
+
+        let answer = 'We are in kulmis event now and you  presenting to the people how you made me. '
 
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
