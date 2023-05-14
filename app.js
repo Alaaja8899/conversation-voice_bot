@@ -142,7 +142,7 @@ function removeItem(item){
 function computerSpeech(words){
     const speech = new SpeechSynthesisUtterance();
     speech.lang = 'eng-uk';
-    speech.pitch = 100;
+    speech.pitch = 1;
     speech.volume = 2;
     speech.text = words;
     speech.rate =1;
