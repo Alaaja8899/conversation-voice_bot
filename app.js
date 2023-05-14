@@ -656,6 +656,21 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     
+    
+    
+    if ( words.includes("where we are now") ||words.includes("event") ||words.includes("now")){
+
+        
+
+        let answer = 'We are in kulmis event now and you  presenting to the people how you made me. '
+
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+        computerSpeech(answer)
+    }
+    
     if ( words.includes("no") ||words.includes("don't understand") ||words.includes("nope")){
 
         let answers = [
@@ -673,18 +688,6 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     
-    if ( words.includes("where we are now") ||words.includes("event") ||words.includes("now")){
-
-        
-
-        let answer = 'We are in kulmis event now and you  presenting to the people how you made me. '
-
-
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-
-        computerSpeech(answer)
-    }
 
     if (  words.includes("rap") || words.includes("sing") || words.includes("Song") || words.includes("song") || words.includes("hiphop")){
 
