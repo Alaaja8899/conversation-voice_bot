@@ -259,7 +259,7 @@ function talkToThem(words){
 
     }
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Who made you')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you') || words.includes('who made you')){
-        let answers = ['zack olso known as (abdul-razak abdullahi hussein) is a softwere engineer web master , founder of mine.','zack A founder (CEO) of finity animation and zack bots he is my father.','i am bot founded by Zack abdaullahi hussein','Abdull razak abdullahi hussein']
+        let answers = ['You programmed me','zack A founder (CEO) of finity animation and zack bots he is my father.','i am bot founded by Zack abdaullahi hussein','Abdull razak abdullahi hussein']
         let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/zack.jpg" alt="zack founder" class="m-img"></p></div>`
