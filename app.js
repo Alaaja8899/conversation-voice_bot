@@ -3,6 +3,7 @@ const speechRecognition = window.speechRecognition || window.webkitSpeechRecogni
 const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
 const audio = new Audio('kulmis.mp3');
+const hor = new Audio('hordhac.mp3');
 
 
 
@@ -663,13 +664,13 @@ function talkToThem(words){
 
         
 
-        let answer = "We're currently at the Kulmis event, which is a special occasion that marks the final days of school for Form Four students. This event is a celebration of their hard work and achievements, and it's an opportunity for them to reflect on their journey so far. It's an honor to be a part of this event and witness the students' growth and success."
+        let answer = "Hadda waxaan joognaa madasha kulmis tas oo mid lagu dhiragelinayo ardayda ina y waxbarashada kudadaalaan waan salaamayaa marti sharafta iyo ardaya ku sugan halkan dhammaan"
 
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
-        computerSpeech(answer)
+       audio.play();
     }
     
     if ( words.includes("no") ||words.includes("don't understand") ||words.includes("nope")){
@@ -760,11 +761,11 @@ function talkToThem(words){
         computerSpeech(answer)
     }
   
-    if (words.includes("speak Somali") || words.includes("Somali language")) {
-        let answer = "Although I don't currently speak Somali, I'm actively learning the language because it's my boss's native tongue. I believe that learning a new language is a valuable skill, and I'm excited to expand my linguistic abilities. Is there anything specific you can recommend to help me improve my Somali language skills?"
+    if (words.includes("speak Somali") || words.includes("Somali language") || words.includes("Somali")) {
+        let answer = "Magacaygu waa liifaay waxaan ahay caqli gacan kusamees ah waxaa i prograamiyey injineer cabdirisaaq cabdullahi xuseen"
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-    audio.play();
+    hor.play();
     }
 
 
