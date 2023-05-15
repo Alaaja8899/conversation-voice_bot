@@ -2,6 +2,7 @@ const micBtn = document.querySelector('.voice-btn')
 const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
 const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
+const audio = new Audio('kulmis.mp3');
 
 
 
@@ -763,7 +764,7 @@ function talkToThem(words){
         let answer = "Although I don't currently speak Somali, I'm actively learning the language because it's my boss's native tongue. I believe that learning a new language is a valuable skill, and I'm excited to expand my linguistic abilities. Is there anything specific you can recommend to help me improve my Somali language skills?"
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-    computerSpeech(answer)
+    audio.play();
     }
 
 
