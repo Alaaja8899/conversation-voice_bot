@@ -673,22 +673,22 @@ function talkToThem(words){
        audio.play();
     }
     
-    if ( words.includes("no") ||words.includes("don't understand") ||words.includes("nope")){
+//     if ( words.includes("no") ||words.includes("don't understand") ||words.includes("nope")){
 
-        let answers = [
-            "I'm sorry, I didn't catch that. Could you please repeat what you said?",
-            "I'm not programmed to answer that question. Is there anything else I can help you with?",
-            "I'm not sure what you mean. Can you please clarify?"
-        ]
+//         let answers = [
+//             "I'm sorry, I didn't catch that. Could you please repeat what you said?",
+//             "I'm not programmed to answer that question. Is there anything else I can help you with?",
+//             "I'm not sure what you mean. Can you please clarify?"
+//         ]
 
-        let answer = getRandomAnswers(answers)
+//         let answer = getRandomAnswers(answers)
 
 
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+//         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+//         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
-        computerSpeech(answer)
-    }
+//         computerSpeech(answer)
+//     }
     
 
     if (  words.includes("rap") || words.includes("sing") || words.includes("Song") || words.includes("song") || words.includes("hiphop")){
