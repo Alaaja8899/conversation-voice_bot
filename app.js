@@ -368,7 +368,7 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (  words.includes('question') || words.includes('ask you')  ){
-        let answer  = 'Go for it!';
+        let answer  = 'Sure, go ahead and ask me anything you like';
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
