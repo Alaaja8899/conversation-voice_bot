@@ -280,7 +280,7 @@ function talkToThem(words){
 
     }
     if (words.includes('zack')  || words.includes('do you know Zack')|| words.includes('Who made you')|| words.includes('Zack')|| words.includes('who is Zack') || words.includes('who developed you') || words.includes('who made you')){
-        let answers = ['You programmed me','You founded me boss','i am bot founded by Abdul-razak abdaullahi hussein','Abdull razak abdullahi hussein']
+        let answers = ["Abdul-razak Abdullahi Hussein is the mastermind behind my creation as a bot.","I am a bot designed and developed by Abdul-razak Abdullahi Hussein.",'i am bot founded by Abdul-razak abdaullahi hussein','Abdull razak abdullahi hussein']
         let answer  = getRandomAnswers(answers);
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>    <img src="/zack.jpg" alt="zack founder" class="m-img"></p></div>`
