@@ -19,10 +19,29 @@ recognition.onstart = (event) =>{
 recognition.onend = (event) =>{
     micBtn.classList.remove('active')
     document.querySelector('.listening').remove()
-    playAudio()
 
 
 }
+
+recognition.onerror = (event) => {
+    let errorMessage = '';
+    switch (event.error) {
+      case 'no-speech':
+        errorMessage = 'No speech detected. Please try again.';
+        break;
+      case 'audio-capture':
+        errorMessage = 'Error capturing audio. Please check your microphone and try again.';
+        break;
+      case 'not-allowed':
+        errorMessage = 'Microphone access denied. Please grant permission to use your microphone.';
+        break;
+      default:
+        errorMessage = 'An error occurred. Please try again.';
+        break;
+    }
+    alert(errorMessage);
+  };
+  
 
 function getRandomAnswers(arr) {
 
@@ -1048,9 +1067,6 @@ function playAudio() {
 function pauseAudio() {
   x.pause();
 }
-micBtn.addEventListener('click',() =>{
-    recognition.start();
-})
 
 
 
@@ -1197,20 +1213,6 @@ function getDictionary(words) {
       }
   }
   
-  function stopStream(){
-      if (mediaStream){
-          mediaStream.getTracks().forEach(track => {
-              track.stop();
-          });
-          mediaStream = null;
-      }
-  }
-  function reverseDetectFace(){
-    document.querySelector('.profile img').style.display = 'block';
-    let scVideo = document.querySelector('.profile .video')
-    scVideo.pause();
-    scVideo.srcObject = null;
-    stopStream();
-}
-
-
+  micBtn.addEventListener('click',() =>{
+    recognition.start();
+})
