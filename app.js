@@ -1266,7 +1266,6 @@ function getDictionary(words) {
       });
   }
 
-getCelebrity('who is sundar pichai')
   micBtn.addEventListener('click',() =>{
     recognition.start();
 })
