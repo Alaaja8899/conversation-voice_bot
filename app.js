@@ -83,7 +83,12 @@ recognition.onresult = (event) => {
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         computerSpeech(answer);
-      } else {
+      }
+      else if (spokenWords.includes('who is')){
+        getCelebrity(spokenWords)
+      }
+      
+      else {
         rememberSomething(spokenWords)
         talkToThem(spokenWords);
         isCountry(spokenWords);
@@ -91,7 +96,8 @@ recognition.onresult = (event) => {
         generateImage(spokenWords)
         getDictionary(spokenWords)
         noSpoken(spokenWords)
-      }
+
+    }
     }
   };
 
@@ -1213,6 +1219,32 @@ function getDictionary(words) {
       }
   }
   
+
+
+
+  function getCelebrity(celebrityName) {
+    const nameRegex = /(?:who is )(.+)/is;
+    const match = celebrityName.match(nameRegex);
+    const pageTitle = match[1].trim();
+    console.log(pageTitle,match,nameRegex)
+  
+    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${pageTitle}`)
+      .then(response => response.json())
+      .then(data => {
+        const title = data.title;
+        const result = data.extract;
+        const messageBody = document.querySelector('.message-body');
+  
+        messageBody.innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${result}</p></div>`;
+        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+        computerSpeech('According to wikipedia ' +result);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+
   micBtn.addEventListener('click',() =>{
     recognition.start();
 })
