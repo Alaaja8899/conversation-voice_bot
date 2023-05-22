@@ -1174,36 +1174,55 @@ function noSpoken(spokenWords){
 
 
 
+///
+// $.ajax({
+//   method: 'GET',
+//   url: 'https://api.api-ninjas.com/v1/dictionary?word=' + word,
+//   headers: { 'X-Api-Key': 'illML6cZ3q677VHSpCeUnA==QAv56pdQLABaZiUs'},
+//   contentType: 'application/json',
+//   success: function(result) {
+//     const noListRegex = /^\d+\.\s+/gm;
+//     let joogsi =  /2\..*/s;
+//     let answer = result.definition.split('\n')[0].replace(noListRegex, '').replace(joogsi, '');
+
+//     document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+//     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+
+//     computerSpeech(answer)
+//   },
+//   error: function ajaxError(jqXHR) {
+//     console.error('Error: ', jqXHR.responseText);
+//   }
+// });  
 
 
 
 
 
 function getDictionary(words) {
-    const nameRegex = /(?:meaning of|Define|what is) (\w+)/i;
-    const match = words.match(nameRegex);    
-    let word = match[1];
-    console.log(word);
-    $.ajax({
-      method: 'GET',
-      url: 'https://api.api-ninjas.com/v1/dictionary?word=' + word,
-      headers: { 'X-Api-Key': 'illML6cZ3q677VHSpCeUnA==QAv56pdQLABaZiUs'},
-      contentType: 'application/json',
-      success: function(result) {
-        const noListRegex = /^\d+\.\s+/gm;
-        let joogsi =  /2\..*/s;
-        let answer = result.definition.split('\n')[0].replace(noListRegex, '').replace(joogsi, '');
-   
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+  const nameRegex = /(?:meaning of|Define|what is | what means) (.+)/i;
+  const match = words.match(nameRegex);
+  const pageTitle = match[1].trim();
+  console.log(pageTitle,match,nameRegex)
 
-        computerSpeech(answer)
-      },
-      error: function ajaxError(jqXHR) {
-        console.error('Error: ', jqXHR.responseText);
-      }
-    });  
-  }
+  fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${pageTitle}`)
+    .then(response => response.json())
+    .then(data => {
+      const title = data.title;
+      const result = data.extract;
+      const messageBody = document.querySelector('.message-body');
+
+      messageBody.innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${result}</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech('According to wikipedia ' +result);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+}
+
+
 
   let mediaStream = null;
 
