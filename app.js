@@ -1250,10 +1250,13 @@ function getDictionary(words) {
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${pageTitle}`)
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         const title = data.title;
         const result = data.extract;
         const messageBody = document.querySelector('.message-body');
-  
+
+
+        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p><img class="m-img" src="${data.originalimage.source}" alt="sophia bicture"></p></div>`  
         messageBody.innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${result}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
         computerSpeech('According to wikipedia ' +result);
@@ -1263,7 +1266,7 @@ function getDictionary(words) {
       });
   }
 
-
+getCelebrity('who is sundar pichai')
   micBtn.addEventListener('click',() =>{
     recognition.start();
 })
