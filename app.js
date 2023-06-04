@@ -186,7 +186,7 @@ function computerSpeech(words){
 function talkToThem(words){
     if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes("what's up")){
         
-        let answers = ['yes my freind how do i help you ?','Hello there , how are you ?','How i can help you sir?']
+        let answers = ['what you want ?','Hello there , how are you ?','How i can help you sir?','what i can help you with ?']
 
         let answer  = getRandomAnswers(answers)
         
@@ -209,7 +209,7 @@ function talkToThem(words){
         computerSpeech(answer)
     }
     if (words.includes('what is your name ') || words.includes('your name')){
-        let answers = ["You can call me Haliimo , what is your's ?",'my name is haliimo , whats your name ?','call me haliimo  , what about you ?',"i'm haliimo , and you ?"]
+        let answers = ["You can call me Levi , what is your's ?",'my name is Levi , whats your name ?','call me Levi  , what about you ?',"i'm Levi , and you ?"]
         let answer  = getRandomAnswers(answers)
         
         computerSpeech(answer)
@@ -218,7 +218,7 @@ function talkToThem(words){
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
     }
     if (words.includes('are you a robot') || words.includes('about yourself') || words.includes('who created you')|| words.includes('who are you')|| words.includes('what are you')){
-        let answers = ["Hello, I am Haliimo, a small but powerful bot designed to work as a personal assistant, similar to Siri and Alexa. My main purpose is to assist you in any way I can, whether it's answering questions, providing information, or helping you with tasks.","Hello, my name is Levi and I am the latest version (v 1.3) of Zack Bot. I am designed to assist people and I specialize in geography. You can ask me about the capital cities of different countries."]
+        let answers = ["Hello, I am Levi, a small but powerful bot designed to work as a personal assistant, similar to Siri and Alexa. My main purpose is to assist you in any way I can, whether it's answering questions, providing information, or helping you with tasks.","Hello, my name is Levi and I am the latest version (v 1.3) of Zack Bot. I am designed to assist people and I specialize in geography. You can ask me about the capital cities of different countries."]
         let answer  = getRandomAnswers(answers)
 
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
@@ -685,18 +685,18 @@ function talkToThem(words){
     
     
     
-    if ( words.includes("where we are now") ||words.includes("event") ||words.includes("now")){
+    // if ( words.includes("where we are now") ||words.includes("event") ||words.includes("now")){
 
         
 
-        let answer = "Hadda waxaan joognaa madasha kulmis tas oo mid lagu dhiragelinayo ardayda ina y waxbarashada kudadaalaan waan salaamayaa marti sharafta iyo ardaya ku sugan halkan dhammaan"
+    //     let answer = "Hadda waxaan joognaa madasha kulmis tas oo mid lagu dhiragelinayo ardayda ina y waxbarashada kudadaalaan waan salaamayaa marti sharafta iyo ardaya ku sugan halkan dhammaan"
 
 
-        document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+    //     document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
+    //     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
-       audio.play();
-    }
+    //    audio.play();
+    // }
     
 //     if ( words.includes("no") ||words.includes("don't understand") ||words.includes("nope")){
 
@@ -787,10 +787,11 @@ function talkToThem(words){
     }
   
     if (words.includes("speak Somali") || words.includes("Somali language") || words.includes("Somali")) {
-        let answer = "Iska warama , magacaygu waa xaliimo waxaan ahay caqli gacan kusamees , waxaa i prograamiyey injineer cabdirisaaq cabdullahi xuseen"
+        // let answer = "Iska warama , magacaygu waa xaliimo waxaan ahay caqli gacan kusamees , waxaa i prograamiyey injineer cabdirisaaq cabdullahi xuseen"
+        let answer = "I can't speak somali language but i hope to speak it."
         document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-    hor.play();
+    // hor.play();
     }
 
 

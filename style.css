@@ -215,7 +215,10 @@
     transform: translateX(-100%);  
   }
 }
-
+.notice{
+  display: flex;
+  align-items: flex-start;
+}
 .notice .card{
   background: #343541;
   width: 30rem;
@@ -231,11 +234,10 @@
 
 .notice .card .img{
   width: 250px;
-  overflow: hidden;
 }
 .notice .card .img img{
   width: 100%;
-  border-radius: 20%;
+  border-radius: 7px;
 
 }
 

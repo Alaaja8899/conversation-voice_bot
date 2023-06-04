@@ -14,8 +14,7 @@
     <div class="notice">
         <div class="card">
             
-            <div class="img"><img src="/zack.jpg" alt="zack"></div>
-            <p class="pich"><i class='bx bx-user-voice'></i>Read me</p>
+            <div class="img"><img src="/me.jpg" alt="zack"></div>
 
             <div class="socials">
                 <a href="https://www.instagram.com/abdirizak8899/"><i class='bx bxl-instagram'></i></a>
@@ -41,24 +40,6 @@
 
 
 <script>
-    function computerSpeech(words){
-    const speech = new SpeechSynthesisUtterance();
-    speech.lang = 'eng-uk';
-    speech.pitch =1;
-    speech.volume = 2;
-    speech.text = words;
-    speech.rate =1;
-
-    window.speechSynthesis.speak(speech)
-}
-const article = document.querySelector('.article p'),
-readBtn = document.querySelector('.notice .pich')
-
-readBtn.addEventListener('click',()  =>{
-    computerSpeech(article.textContent)
-})
-
-window.addEventListener('load' , window.speechSynthesis.cancel())
 
 </script>
 
