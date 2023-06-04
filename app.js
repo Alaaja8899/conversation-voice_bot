@@ -39,7 +39,11 @@ recognition.onerror = (event) => {
         errorMessage = 'An error occurred. Please try again.';
         break;
     }
-    alert(errorMessage);
+
+    document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${errorMessage}</p></div>`;
+    $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+    computerSpeech(errorMessage);
+
   };
   
 
@@ -62,10 +66,10 @@ recognition.onresult = (event) => {
     const spokenWords = event.results[0][0].transcript;
     console.log(spokenWords);
 
-    if (spokenWords.trim().length === 0){
-        recognition.start();
-      }
-  
+    if (spokenWords.trim().length === 0) {
+      console.log('No words recognized. Please try again.');
+      recognition.start();
+    } 
     document.querySelector('.message-body').innerHTML += `<div class="user-msg"><p>${spokenWords}</p></div>`;
     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
   
