@@ -1,7 +1,5 @@
 const micBtn = document.querySelector('.voice-btn')
 const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
-recognition.continuous = true;
-recognition.interimResults = true;
 const profile = document.querySelector('.profile')
 const recognition = new speechRecognition();
 
