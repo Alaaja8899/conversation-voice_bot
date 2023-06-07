@@ -25,6 +25,7 @@
   background: #10A37F;
 }
 
+
 .container .bot-card{
   border-radius: .4rem;
   padding: .7rem;
@@ -36,6 +37,49 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #343541;
 }
+
+.container .bot-card.reg{
+  position: absolute;
+  min-height: 90%;
+}
+
+.container .bot-card.reg.hide{
+  display: none;
+}
+
+.container .bot-card.reg .profile{}
+.container .bot-card.reg form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+  color: #fff;
+}
+.container .bot-card.reg form input , textarea{
+  padding: 5px;
+  border: none;
+  outline: none;
+  resize: none;
+  border-radius: 3px;
+  background: transparent;
+  border: 2px solid #444654;
+  color: #fff;
+}
+
+.container .bot-card.reg form input:focus,.container .bot-card.reg form textarea:focus{
+  border: 2px solid #10A37F;
+}
+
+.container .bot-card.reg form button{
+  color: #fff;
+  background: #10A37F;
+  border: none;
+  outline: none;
+  padding: 10px;
+  cursor: pointer;
+
+}
+
 .bot-card .top{
   display: flex;
   align-items: center;

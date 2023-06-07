@@ -1,9 +1,13 @@
 const micBtn = document.querySelector('.voice-btn')
 const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
-const profile = document.querySelector('.profile')
+const profile = document.querySelector('.profile.user')
 const recognition = new speechRecognition();
 
+profile.querySelector('img').src = localStorage.getItem('imageUrl')
 
+let message = `<div class="bot-msg listening"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>Welcome ${localStorage.getItem('Name')} is nice to meet i am levi greatest and intellegence voicebot in zack bots How i can help you ?</p></div>`
+    
+document.querySelector('.message-body').innerHTML+= message
 
 const audio = new Audio('kulmis.mp3');
 const hor = new Audio('hordhac.mp3');
@@ -108,7 +112,6 @@ recognition.onresult = (event) => {
     }
   };
 
-  recognition.start();
 
   
   function rememberSomething(spokenWords) {
