@@ -171,14 +171,14 @@ function removeItem(item){
 }
 
 function computerSpeech(words){
-    const speech = new SpeechSynthesisUtterance();
-    speech.lang = 'eng-uk';
-    speech.pitch = 1;
-    speech.volume = 2;
-    speech.text = words;
-    speech.rate =1;
-    window.speechSynthesis.speak(speech)
-
+  const speech = new SpeechSynthesisUtterance();
+  speech.lang = 'eng-gb';
+  speech.pitch = 1;
+  speech.volume = 2;
+  speech.text = words;
+  speech.rate =1;
+  speech.voice = speechSynthesis.getVoices().find((voice) => voice.name.includes('Amy'));
+  window.speechSynthesis.speak(speech)
 
     // start speech recognition when speech ends
     speech.onend = () => {
@@ -190,9 +190,10 @@ function computerSpeech(words){
 function talkToThem(words){
     if (words.includes('hello') || words.includes('hi') || words.includes('hey') || words.includes("what's up")){
         
-        let answers = ['what you want ?','Hello there , how are you ?','How i can help you sir?','what i can help you with ?']
+        let answers = ["olá , that's hello in portuguese. How i can help ?",'Hello there , how are you ?','How i can help you sir?','what i can help you with ?']
 
-        let answer  = getRandomAnswers(answers)
+        // let answer  = getRandomAnswers(answers)
+        let answer = "iska waran , that's hello in Somali. How i can help ?"
         
         
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`
@@ -200,6 +201,13 @@ function talkToThem(words){
     
         computerSpeech(answer)
     }
+    if (words.includes("i am good") || words.includes("i am fine")) {
+      let answers = ["That's great to hear! How can I assist you today?", "I'm happy to hear that! What can I do for you today?", "I'm glad to hear that! How can I help you today?"];
+      let answer = getRandomAnswers(answers);
+      document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(answer);
+  }
     if (words.includes('are you robot') || words.includes('who is levi')){
         
         let answers = ["I'm levi latest bot of zack bots","Levi is programm that can help you to do your job as best as possible.","i'm assistant ask me question am here to learn from you"]

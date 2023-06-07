@@ -38,7 +38,8 @@ form.addEventListener('submit', function(event) {
 
 
   localStorage.setItem('data' , true)
-  let introData = "Hello  , "+localStorage.getItem('Name')+" my name is Levi, and I am the latest and greatest voicebot in the world. My founder has made me to assist people with tasks such as solving math problems, providing definitions according to Wikipedia, and remembering data. Just say 'remember' and I will remember it. It's nice to meet you!"
+  let introData = "Hello  , "+localStorage.getItem('Name')+" my name is Levi. I am a  latest and greatest voicebot on the planet that can recognize your voice and answer to you. It is nice to meet you. Even though I am a machine, I can help you improve your English language by taking conversations with you. I learn from your conversation to fill you in on my database. I am here to help you with any questions or tasks you may have. How can I assist you today?"
+
   const  registered = localStorage.getItem('data')
   const registerCard = document.querySelector('.bot-card.reg')
   document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${introData}</p></div>`
