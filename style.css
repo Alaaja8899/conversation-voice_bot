@@ -31,8 +31,8 @@
   padding: .7rem;
   display: flex;
   flex-direction: column;
-  height: 80%;
-  width: 30em;
+  height: 100%;
+  width: 35em;
   max-width: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #343541;
@@ -356,5 +356,14 @@
   }
   to{
     transform: scale(1.0);
+  }
+}
+
+
+@media(max-width:770px){
+  .container .bot-card{
+    height: 80%;
+    width: 30rem;
+    max-width: 100%;
   }
 }

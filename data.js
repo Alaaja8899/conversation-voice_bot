@@ -5,7 +5,9 @@ let registered = localStorage.getItem('data')
 const registerCard = document.querySelector('.bot-card.reg')
 const profile = document.querySelector('.profile.user')
 
-
+// window.onload = ()=>{
+//     registerCard.classList.toggle('hide')
+// }
 
 
 uploadImage.addEventListener('change', function() {
@@ -38,7 +40,7 @@ form.addEventListener('submit', function(event) {
 
 
   localStorage.setItem('data' , true)
-  let introData = "Hello  , "+localStorage.getItem('Name')+" my name is Levi. I am a  latest and greatest voicebot on the planet that can recognize your voice and answer to you. It is nice to meet you. Even though I am a machine, I can help you improve your English language by taking conversations with you. I learn from your conversation to fill you in on my database. I am here to help you with any questions or tasks you may have. How can I assist you today?"
+  let introData = "Hello  , "+localStorage.getItem('Name')+" my name is Levi. I am a  latest and greatest voicebot on the planet .   It is nice to meet you. Even though I am a machine, I can help you improve your English language by taking conversations with you. I am here to help you with any questions or tasks you may have. Welcome to Levi voicebot (that's me)"
 
   const  registered = localStorage.getItem('data')
   const registerCard = document.querySelector('.bot-card.reg')

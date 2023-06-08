@@ -192,8 +192,8 @@ function talkToThem(words){
         
         let answers = ["olá , that's hello in portuguese. How i can help ?",'Hello there , how are you ?','How i can help you sir?','what i can help you with ?']
 
-        // let answer  = getRandomAnswers(answers)
-        let answer = "iska waran , that's hello in Somali. How i can help ?"
+        let answer  = getRandomAnswers(answers)
+        // let answer = "iska waran , that's hello in Somali. How i can help ?"
         
         
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}😊</p></div>`
@@ -845,6 +845,20 @@ function talkToThem(words){
 
     }
 
+    if (words.includes("why")) {
+        
+
+          let answers = [
+            "i don't know what you mean ?",
+            "What was that"
+          ]
+
+
+          let answer = getRandomAnswers(answers);    
+      document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+      computerSpeech(answer)
+  }
 
 
 
@@ -1213,7 +1227,7 @@ function noSpoken(spokenWords){
 
 
 function getDictionary(words) {
-  const nameRegex = /(?:meaning of|Define|what is | what means) (.+)/i;
+  const nameRegex = /(?:meaning of|Define|what is | what means | Explain) (.+)/i;
   const match = words.match(nameRegex);
   const pageTitle = match[1].trim();
   console.log(pageTitle,match,nameRegex)
@@ -1227,7 +1241,7 @@ function getDictionary(words) {
 
       messageBody.innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${result}</p></div>`;
       $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-      computerSpeech('According to wikipedia ' +result);
+      computerSpeech(result);
     })
     .catch(error => {
       console.error(error);
@@ -1255,7 +1269,7 @@ function getDictionary(words) {
 
 
   function getCelebrity(celebrityName) {
-    const nameRegex = /(?:who is )(.+)/is;
+    const nameRegex = /(?:who is | what is)(.+)/i;
     const match = celebrityName.match(nameRegex);
     const pageTitle = match[1].trim();
     console.log(pageTitle,match,nameRegex)
@@ -1272,7 +1286,7 @@ function getDictionary(words) {
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p><img class="m-img" src="${data.originalimage.source}" alt="sophia bicture"></p></div>`  
         messageBody.innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${result}</p></div>`;
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-        computerSpeech('According to wikipedia ' +result);
+        computerSpeech(result);
       })
       .catch(error => {
         console.error(error);
