@@ -36,7 +36,57 @@
   max-width: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #343541;
+  position: relative;
 }
+
+.container .bot-card .menue{
+  background: #10A37F;
+  width: fit-content;
+  padding: 6px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.container .bot-card .menue i{
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.container .bot-card .menue-options{
+  background: #444654;
+  position: absolute;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 5px;
+  border-radius: 5px;
+  position: absolute;
+  transform: scale(1);
+  top: 60px;
+  z-index: 999;
+}
+.container .bot-card .menue-options.hide{
+  transform: scale(0);
+}
+.container .bot-card .menue-options span{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+
+}
+.container .bot-card .menue-options span:hover{
+  background: #343541;
+}
+
+
 
 .container .bot-card.reg{
   position: absolute;
