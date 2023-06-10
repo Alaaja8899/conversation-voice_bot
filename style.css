@@ -412,7 +412,7 @@
 
 @media(max-width:770px){
   .container .bot-card{
-    height: 80%;
+    height: 90%;
     width: 30rem;
     max-width: 100%;
   }

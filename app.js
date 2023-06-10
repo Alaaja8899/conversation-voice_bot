@@ -730,27 +730,17 @@ function talkToThem(words){
 
     if (  words.includes("rap") || words.includes("sing") || words.includes("Song") || words.includes("song") || words.includes("hiphop")){
 
-        // let songs = [
-        //     "https://youtu.be/qHmA1YMvO98",
-        //     "https://youtu.be/g-uW3I_AtDE",
-        //     "https://youtu.be/acFmHf73x5I",
-        //     "https://youtu.be/6L_k74BOLag",
-        //     "https://youtu.be/lwk5OUII9Vc",
-        //     "https://youtu.be/o7V-Pz-lOWc",
-        //     "https://youtu.be/MdIJ4g3GiPw",
-        //     "https://youtu.be/vDXEyPoJk4M",
-        //     "https://youtu.be/o63wu3bQJxY",
-        //     "https://youtu.be/JC-10WnX1a8",
-        //     "https://youtu.be/Gdeq9lNTamE",
-        //     "https://youtu.be/CnqmmsfxVqM"
-        // ]
+        let songs = [
+            "https://youtu.be/I49KH6fmDkg",
+            "https://youtu.be/b23IreSUW3s"
+        ]
         
-        let answer = 'playing song on appla player';
+        let answer = 'playing song on youtube';
         document.querySelector('.message-body').innerHTML+= `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`
         $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
 
         computerSpeech(answer)
-        window.open("https://appla-player.netlify.app/")
+        window.open(getRandomAnswers(songs))
     }
 
 
