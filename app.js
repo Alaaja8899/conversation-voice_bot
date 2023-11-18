@@ -1,6 +1,7 @@
 const micBtn = document.querySelector('.voice-btn')
 const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition
 const recognition = new speechRecognition();
+const token = "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";
 
 
 const audio = new Audio('kulmis.mp3');
@@ -67,43 +68,56 @@ recognition.onresult = (event) => {
     const spokenWords = event.results[0][0].transcript;
     console.log(spokenWords);
 
-    if (spokenWords.trim().length === 0) {
-      console.log('No words recognized. Please try again.');
-      recognition.start();
-    } 
     document.querySelector('.message-body').innerHTML += `<div class="user-msg"><p>${spokenWords}</p></div>`;
     $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
   
-    if (containsMathProblem(spokenWords)) {
-      const solution = solveMathProblem(spokenWords);
-      document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>The solution is ${solution}.</p></div>`;
-      $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-      computerSpeech(`The solution is ${solution}.`);
-    } else if (spokenWords.toLowerCase().includes('repeat after me')) {
-      repeatAfterMe(spokenWords);
-    } else {
-      let name = getName(spokenWords);
-      if (name) {
-        let answer = `Nice to meet you, ${name}. How can I assist you today?`;
-        document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
-        $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
-        computerSpeech(answer);
-      }
-      else if (spokenWords.includes('who is')){
-        getCelebrity(spokenWords)
-      }
-      
-      else {
-        rememberSomething(spokenWords)
-        talkToThem(spokenWords);
-        isCountry(spokenWords);
-        forgetSomething(spokenWords)
-        generateImage(spokenWords)
-        getDictionary(spokenWords)
-        noSpoken(spokenWords)
+    const requestData = {
+      "model": "gpt-3.5-turbo-1106",
+      "messages": [{ "role": "user", "content": spokenWords }]
+  };
 
-    }
-    }
+  
+const makeRequest = async () => {
+  try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+              'Content-type': 'application/json',
+              'Authorization': 'Bearer ' + token,
+          },
+          body: JSON.stringify(requestData)
+      });
+
+      if (!response.ok) {
+          throw new Error('Network response was not ok.');
+      }
+
+      const data = await response.json();
+
+      if (data.choices && data.choices.length > 0 && data.choices[0].message && data.choices[0].message.content) {
+       const   answer = data.choices[0].message.content;
+
+       document.querySelector('.message-body').innerHTML += `<div class="bot-msg"><span class="bot-img"><img src="/support.png" alt="bot profile image"></span><p>${answer}</p></div>`;
+
+       $('.message-body').scrollTop($('.message-body')[0].scrollHeight);
+       computerSpeech(answer);
+ 
+      } else {
+          throw new Error('Unexpected data format from the API.');
+      }
+  } catch (error) {
+      console.error('Error:', error.message);
+
+      if (error.message.includes('429')) {
+          // If it's a rate limit error, wait for some time and retry
+          await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
+          await makeRequest(); // Retry the request
+      }
+  }
+};
+
+  makeRequest();
+
   };
 
 
